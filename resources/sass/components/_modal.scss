@@ -1,0 +1,9 @@
+.modal-content {
+    border-radius: rem-size(20);
+}
+
+@media (min-width: 992px) {
+    .app-modal-lg {
+        max-width: 640px;
+    }
+}

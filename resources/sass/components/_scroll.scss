@@ -1,0 +1,19 @@
+.app-scrollable {
+    overflow: auto;
+
+    &.app-scrollable-dashboard-news-feed {
+        max-height: 700px;
+    }
+
+    &.app-scrollable-dashboard-week-order {
+        max-height: 750px;
+    }
+
+    &.app-shipping-order-list {
+        max-height: 750px;
+    }
+
+    &.app-shipping-order-release-list {
+        max-height: 900px;
+    }
+}

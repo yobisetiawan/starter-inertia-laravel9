@@ -1,0 +1,10 @@
+.pagination {
+    flex-wrap: wrap;
+    .page-item {
+        margin-right: 3px;
+        .page-link {
+            border-radius: rem-size(8);
+            box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.15);
+        }
+    }
+}

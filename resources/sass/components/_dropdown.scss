@@ -1,0 +1,28 @@
+.dropdown-toggle {
+    &::after {
+        border: 0;
+        background: url("/images/icons/arr-down.png") no-repeat center;
+        width: 13px;
+        height: 9px;
+        position: relative;
+        top: 3px;
+    }
+
+    &.btn-light {
+        &::after {
+            background: url("/images/icons/arr-down-dark.png") no-repeat center;
+        }
+    }
+}
+
+.app-dropdown-order-list-people {
+    position: absolute;
+    right: rem-size(40);
+    top: 10px;
+}
+
+.app-dropdown-toggle2 {
+    &::after {
+        display: none !important;
+    }
+}

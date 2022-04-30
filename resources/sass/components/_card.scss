@@ -1,0 +1,238 @@
+.app-card {
+    border: 0;
+    background-color: transparent;
+
+    & > .card-header {
+        background-color: #fff;
+        min-height: rem-size(88);
+        background: #fff;
+        border-radius: rem-size(20) rem-size(20) 0 0;
+        box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.15);
+        padding: 0 rem-size(40);
+        border-bottom: 4px solid #f4f5f7;
+
+        .card-title {
+            font-weight: 700;
+            font-size: rem-size(24);
+            color: $primary;
+            margin: 0;
+        }
+    }
+
+    & > .card-body {
+        padding: rem-size(24) rem-size(40);
+        background-color: #fff;
+        border-radius: 0 0 rem-size(20) rem-size(20);
+        box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.15);
+        &.app-scrollable {
+            border-radius: 0;
+            
+        }
+    }
+}
+
+.app-card2 {
+    border: 0;
+    background-color: transparent;
+
+    & > .card-header {
+        background-color: #39b54a;
+        border-radius: rem-size(12) rem-size(12) 0px 0px;
+        color: #fff;
+        padding: rem-size(8) rem-size(12);
+    }
+
+    & > .card-footer {
+        background-color: #39b54a;
+        border-radius: 0px 0px rem-size(12) rem-size(12);
+        color: #fff;
+        padding: 4px 12px;
+    }
+
+    & > .card-body {
+        &.with-border-radius {
+            border-radius: 0 0 rem-size(12) rem-size(12);
+            overflow: hidden;
+        }
+        &.with-border-radius-full {
+            border-radius: rem-size(12);
+            overflow: hidden;
+        }
+    }
+}
+
+.app-box {
+    border-radius: 20px;
+    background-color: #fff;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.15);
+    padding: rem-size(24) rem-size(20);
+
+    .app-box-header {
+        min-height: rem-size(88);
+        padding: 0 rem-size(40);
+        border-bottom: 4px solid #f4f5f7;
+
+        &.no-boder {
+            border-bottom: 0;
+        }
+
+        .app-box-title {
+            font-weight: 700;
+            font-size: rem-size(24);
+            color: $primary;
+            margin: 0;
+        }
+    }
+
+    .app-box-body {
+        padding: rem-size(22) rem-size(40);
+    }
+}
+
+.app-card-calendar {
+    .card-body {
+        border: 2px solid $success;
+        border-radius: 0 0 rem-size(12) rem-size(12);
+    }
+
+    .list-date {
+        a {
+            text-decoration: none;
+            color: $body-color;
+        }
+
+        li {
+            padding: 8px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            &.active {
+                background-color: $success;
+                a {
+                    div {
+                        &:first-child {
+                            font-weight: 700;
+                        }
+                    }
+                    color: #fff;
+                }
+            }
+        }
+    }
+}
+
+.app-card-delivery {
+    border-radius: rem-size(12);
+    .card-header {
+        border-radius: rem-size(12) rem-size(12) 0 0;
+    }
+
+    .app-img-rounded {
+        border-radius: rem-size(12);
+    }
+}
+
+.app-card-background {
+    background-color: #ddd;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: rem-size(275);
+
+    &.box-sm {
+        height: 192px;
+    }
+
+    &.app-order-list-menu-item {
+        height: 280px;
+    }
+
+    &.app-kitchen-top {
+        height: 168px;
+    }
+
+    &.app-order-list-menu-item-details {
+        height: 148px;
+    }
+
+    &.app-batch-card1{
+        height: 138px;
+    }
+}
+
+.app-card-menu-image {
+    align-items: center;
+    justify-content: center;
+    background-color: #ddd;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    border-radius: 0.75rem;
+    height: 17.5rem;
+    position: relative;
+}
+  
+.app-card-menu-image .empty-image {
+    position: absolute;
+    top: 45%;
+    left: 0;
+    right: 0;
+    text-align: center;
+    cursor: pointer;
+}
+  
+.app-card-menu-image.has-image {
+    background-color: #fdead2;
+    border: 3px solid #f79420;
+}
+  
+.app-card-menu-image .app-card-action {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    z-index: 10;
+}
+  
+.app-card-menu-image .app-file-dummy-label {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+}
+
+.app-card-order-details {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    background-color: $white;
+    z-index: 20;
+
+    max-height: 500px;
+    overflow: auto;
+    border-radius: 0 0 rem-size(20) rem-size(20);
+
+    .app-card-order-details-content {
+        border-top: 4px solid #f4f5f7;
+    }
+
+    .app-box-body {
+        padding: rem-size(24);
+    }
+}
+
+.app-card-order-details-exit {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+
+.app-card-table-details {
+    overflow: auto;
+}

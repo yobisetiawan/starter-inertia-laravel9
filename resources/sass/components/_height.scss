@@ -1,0 +1,13 @@
+.app-min-full {
+    min-height: 100%;
+}
+
+.app-min-card1 {
+    @media (min-width: 1600px) {
+        min-height: 820px;
+    }
+}
+
+.app-order-list-table-area{
+    min-height: 750px;
+}

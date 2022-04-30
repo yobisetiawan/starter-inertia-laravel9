@@ -1,0 +1,41 @@
+.font {
+    &-base {
+        font-size: rem-size(16);
+    }
+    &-sm {
+        font-size: rem-size(14);
+    }
+    &-xs {
+        font-size: rem-size(12);
+    }
+    &-xs2 {
+        font-size: rem-size(11);
+    }
+    &-xss {
+        font-size: rem-size(10);
+    }
+    &-xsss {
+        font-size: rem-size(8);
+    }
+}
+
+.font-title {
+    font-size: rem-size(24);
+    font-weight: 700;
+    &-2 {
+        font-size: rem-size(32);
+    }
+    &-3 {
+        font-size: rem-size(28);
+    }
+}
+
+.font {
+    &-normal {
+        font-weight: 400;
+    }
+
+    &-bold {
+        font-weight: 700;
+    }
+}

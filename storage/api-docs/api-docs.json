@@ -1,0 +1,948 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Project Name Api",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/v1/auth/forgot-password": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/ApiForgotPasswordRequest_email"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/auth/login": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/ApiLoginRequest_email"
+                    },
+                    {
+                        "$ref": "#/components/parameters/ApiLoginRequest_password"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/auth/logout": {
+            "get": {
+                "tags": [
+                    "Auth"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/auth/register": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/ApiRegisterRequest_name"
+                    },
+                    {
+                        "$ref": "#/components/parameters/ApiRegisterRequest_email"
+                    },
+                    {
+                        "$ref": "#/components/parameters/ApiRegisterRequest_password"
+                    },
+                    {
+                        "$ref": "#/components/parameters/ApiRegisterRequest_password_confirm"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/auth/reset-password": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/ApiResetPasswordRequest_email"
+                    },
+                    {
+                        "$ref": "#/components/parameters/ApiResetPasswordRequest_code"
+                    },
+                    {
+                        "$ref": "#/components/parameters/ApiResetPasswordRequest_password"
+                    },
+                    {
+                        "$ref": "#/components/parameters/ApiResetPasswordRequest_password_confirm"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/auth/verify-password": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/ApiVerifyPasswordRequest_email"
+                    },
+                    {
+                        "$ref": "#/components/parameters/ApiVerifyPasswordRequest_code"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/shipper/area": {
+            "get": {
+                "tags": [
+                    "Shipper"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/OA_listQ"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/shipper/tracking/{shipper_tracking_id}": {
+            "get": {
+                "tags": [
+                    "Shipper"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/OA_shipper_tracking_id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/user/addresses": {
+            "get": {
+                "tags": [
+                    "Address"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/OA_listType"
+                    },
+                    {
+                        "$ref": "#/components/parameters/OA_listQ"
+                    },
+                    {
+                        "$ref": "#/components/parameters/OA_listPage"
+                    },
+                    {
+                        "$ref": "#/components/parameters/OA_SortBy"
+                    },
+                    {
+                        "$ref": "#/components/parameters/OA_OrderBy"
+                    },
+                    {
+                        "$ref": "#/components/parameters/OA_limit"
+                    },
+                    {
+                        "$ref": "#/components/parameters/OA_Relations"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Address"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/ApiAddressRequest_title"
+                    },
+                    {
+                        "$ref": "#/components/parameters/ApiAddressRequest_address"
+                    },
+                    {
+                        "$ref": "#/components/parameters/ApiAddressRequest_is_default"
+                    },
+                    {
+                        "$ref": "#/components/parameters/ApiAddressRequest_country_id"
+                    },
+                    {
+                        "$ref": "#/components/parameters/ApiAddressRequest_province_id"
+                    },
+                    {
+                        "$ref": "#/components/parameters/ApiAddressRequest_city_id"
+                    },
+                    {
+                        "$ref": "#/components/parameters/ApiAddressRequest_suburb_id"
+                    },
+                    {
+                        "$ref": "#/components/parameters/ApiAddressRequest_area_id"
+                    },
+                    {
+                        "$ref": "#/components/parameters/ApiAddressRequest_country_name"
+                    },
+                    {
+                        "$ref": "#/components/parameters/ApiAddressRequest_province_name"
+                    },
+                    {
+                        "$ref": "#/components/parameters/ApiAddressRequest_city_name"
+                    },
+                    {
+                        "$ref": "#/components/parameters/ApiAddressRequest_suburb_name"
+                    },
+                    {
+                        "$ref": "#/components/parameters/ApiAddressRequest_area_name"
+                    },
+                    {
+                        "$ref": "#/components/parameters/ApiAddressRequest_postcode"
+                    },
+                    {
+                        "$ref": "#/components/parameters/ApiAddressRequest_display_address"
+                    },
+                    {
+                        "$ref": "#/components/parameters/OA_Relations"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/user/addresses/{id}": {
+            "get": {
+                "tags": [
+                    "Address"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/OA_id"
+                    },
+                    {
+                        "$ref": "#/components/parameters/OA_Relations"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Address"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/OA_id"
+                    },
+                    {
+                        "$ref": "#/components/parameters/ApiAddressRequest_title"
+                    },
+                    {
+                        "$ref": "#/components/parameters/ApiAddressRequest_address"
+                    },
+                    {
+                        "$ref": "#/components/parameters/ApiAddressRequest_is_default"
+                    },
+                    {
+                        "$ref": "#/components/parameters/ApiAddressRequest_country_id"
+                    },
+                    {
+                        "$ref": "#/components/parameters/ApiAddressRequest_province_id"
+                    },
+                    {
+                        "$ref": "#/components/parameters/ApiAddressRequest_city_id"
+                    },
+                    {
+                        "$ref": "#/components/parameters/ApiAddressRequest_suburb_id"
+                    },
+                    {
+                        "$ref": "#/components/parameters/ApiAddressRequest_area_id"
+                    },
+                    {
+                        "$ref": "#/components/parameters/ApiAddressRequest_country_name"
+                    },
+                    {
+                        "$ref": "#/components/parameters/ApiAddressRequest_province_name"
+                    },
+                    {
+                        "$ref": "#/components/parameters/ApiAddressRequest_city_name"
+                    },
+                    {
+                        "$ref": "#/components/parameters/ApiAddressRequest_suburb_name"
+                    },
+                    {
+                        "$ref": "#/components/parameters/ApiAddressRequest_area_name"
+                    },
+                    {
+                        "$ref": "#/components/parameters/ApiAddressRequest_postcode"
+                    },
+                    {
+                        "$ref": "#/components/parameters/ApiAddressRequest_display_address"
+                    },
+                    {
+                        "$ref": "#/components/parameters/OA_Relations"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Address"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/OA_id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/user/change-avatar": {
+            "post": {
+                "tags": [
+                    "Profile"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/OA_Relations"
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "avatar": {
+                                        "type": "string",
+                                        "format": "binary"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/user/change-password": {
+            "post": {
+                "tags": [
+                    "Profile"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/ApiChangePasswordRequest_old_password"
+                    },
+                    {
+                        "$ref": "#/components/parameters/ApiChangePasswordRequest_password"
+                    },
+                    {
+                        "$ref": "#/components/parameters/ApiChangePasswordRequest_password_confirmation"
+                    },
+                    {
+                        "$ref": "#/components/parameters/OA_Relations"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/user/change-profile": {
+            "post": {
+                "tags": [
+                    "Profile"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/ApiChangeProfileRequest_name"
+                    },
+                    {
+                        "$ref": "#/components/parameters/OA_Relations"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/user": {
+            "get": {
+                "tags": [
+                    "Profile"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/OA_Relations"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "parameters": {
+            "OA_id": {
+                "name": "id",
+                "in": "path",
+                "required": true,
+                "schema": {
+                    "type": "string"
+                }
+            },
+            "OA_listQ": {
+                "name": "q",
+                "in": "query",
+                "schema": {
+                    "type": "string"
+                }
+            },
+            "OA_listType": {
+                "name": "type",
+                "in": "query",
+                "schema": {
+                    "type": "string",
+                    "enum": [
+                        "collection",
+                        "pagination"
+                    ],
+                    "default": "collection"
+                }
+            },
+            "OA_listPage": {
+                "name": "page",
+                "in": "query",
+                "schema": {
+                    "type": "string"
+                }
+            },
+            "OA_SortBy": {
+                "name": "sort_by",
+                "in": "query",
+                "schema": {
+                    "type": "string",
+                    "enum": [
+                        "asc",
+                        "desc"
+                    ],
+                    "default": "asc"
+                }
+            },
+            "OA_OrderBy": {
+                "name": "order_by",
+                "in": "query",
+                "schema": {
+                    "type": "string"
+                }
+            },
+            "OA_limit": {
+                "name": "limit",
+                "in": "query",
+                "schema": {
+                    "type": "integer"
+                }
+            },
+            "OA_Relations": {
+                "name": "relations",
+                "in": "query",
+                "schema": {
+                    "type": "string"
+                }
+            },
+            "ApiForgotPasswordRequest_email": {
+                "name": "email",
+                "in": "query",
+                "required": true,
+                "schema": {
+                    "type": "string"
+                }
+            },
+            "ApiLoginRequest_email": {
+                "name": "email",
+                "in": "query",
+                "required": true,
+                "schema": {
+                    "type": "string"
+                }
+            },
+            "ApiLoginRequest_password": {
+                "name": "password",
+                "in": "query",
+                "required": true,
+                "schema": {
+                    "type": "string"
+                }
+            },
+            "ApiRegisterRequest_name": {
+                "name": "name",
+                "in": "query",
+                "required": true,
+                "schema": {
+                    "type": "string"
+                }
+            },
+            "ApiRegisterRequest_email": {
+                "name": "email",
+                "in": "query",
+                "required": true,
+                "schema": {
+                    "type": "string"
+                }
+            },
+            "ApiRegisterRequest_password": {
+                "name": "password",
+                "in": "query",
+                "required": true,
+                "schema": {
+                    "type": "string"
+                }
+            },
+            "ApiRegisterRequest_password_confirm": {
+                "name": "password_confirmation",
+                "in": "query",
+                "required": true,
+                "schema": {
+                    "type": "string"
+                }
+            },
+            "ApiResetPasswordRequest_email": {
+                "name": "email",
+                "in": "query",
+                "required": true,
+                "schema": {
+                    "type": "string"
+                }
+            },
+            "ApiResetPasswordRequest_code": {
+                "name": "code",
+                "in": "query",
+                "required": true,
+                "schema": {
+                    "type": "string"
+                }
+            },
+            "ApiResetPasswordRequest_password": {
+                "name": "password",
+                "in": "query",
+                "required": true,
+                "schema": {
+                    "type": "string"
+                }
+            },
+            "ApiResetPasswordRequest_password_confirm": {
+                "name": "password_confirmation",
+                "in": "query",
+                "required": true,
+                "schema": {
+                    "type": "string"
+                }
+            },
+            "ApiVerifyPasswordRequest_email": {
+                "name": "email",
+                "in": "query",
+                "required": true,
+                "schema": {
+                    "type": "string"
+                }
+            },
+            "ApiVerifyPasswordRequest_code": {
+                "name": "code",
+                "in": "query",
+                "required": true,
+                "schema": {
+                    "type": "string"
+                }
+            },
+            "OA_shipper_tracking_id": {
+                "name": "shipper_tracking_id",
+                "in": "path",
+                "required": true,
+                "schema": {
+                    "type": "string"
+                }
+            },
+            "ApiAddressRequest_title": {
+                "name": "title",
+                "in": "query",
+                "required": true,
+                "schema": {
+                    "type": "string"
+                }
+            },
+            "ApiAddressRequest_address": {
+                "name": "address",
+                "in": "query",
+                "required": true,
+                "schema": {
+                    "type": "string"
+                }
+            },
+            "ApiAddressRequest_is_default": {
+                "name": "is_default",
+                "in": "query",
+                "required": true,
+                "schema": {
+                    "type": "integer",
+                    "enum": [
+                        0,
+                        1
+                    ],
+                    "default": 0
+                }
+            },
+            "ApiAddressRequest_country_id": {
+                "name": "country_id",
+                "in": "query",
+                "required": true,
+                "schema": {
+                    "type": "integer"
+                }
+            },
+            "ApiAddressRequest_province_id": {
+                "name": "province_id",
+                "in": "query",
+                "required": true,
+                "schema": {
+                    "type": "integer"
+                }
+            },
+            "ApiAddressRequest_city_id": {
+                "name": "city_id",
+                "in": "query",
+                "required": true,
+                "schema": {
+                    "type": "integer"
+                }
+            },
+            "ApiAddressRequest_suburb_id": {
+                "name": "suburb_id",
+                "in": "query",
+                "required": true,
+                "schema": {
+                    "type": "integer"
+                }
+            },
+            "ApiAddressRequest_area_id": {
+                "name": "area_id",
+                "in": "query",
+                "required": true,
+                "schema": {
+                    "type": "integer"
+                }
+            },
+            "ApiAddressRequest_country_name": {
+                "name": "country_name",
+                "in": "query",
+                "required": true,
+                "schema": {
+                    "type": "string"
+                }
+            },
+            "ApiAddressRequest_province_name": {
+                "name": "province_name",
+                "in": "query",
+                "required": true,
+                "schema": {
+                    "type": "string"
+                }
+            },
+            "ApiAddressRequest_city_name": {
+                "name": "city_name",
+                "in": "query",
+                "required": true,
+                "schema": {
+                    "type": "string"
+                }
+            },
+            "ApiAddressRequest_suburb_name": {
+                "name": "suburb_name",
+                "in": "query",
+                "required": true,
+                "schema": {
+                    "type": "string"
+                }
+            },
+            "ApiAddressRequest_area_name": {
+                "name": "area_name",
+                "in": "query",
+                "required": true,
+                "schema": {
+                    "type": "string"
+                }
+            },
+            "ApiAddressRequest_postcode": {
+                "name": "postcode",
+                "in": "query",
+                "required": true,
+                "schema": {
+                    "type": "integer"
+                }
+            },
+            "ApiAddressRequest_display_address": {
+                "name": "display_address",
+                "in": "query",
+                "required": true,
+                "schema": {
+                    "type": "string"
+                }
+            },
+            "ApiChangePasswordRequest_old_password": {
+                "name": "old_password",
+                "in": "query",
+                "required": true,
+                "schema": {
+                    "type": "string"
+                }
+            },
+            "ApiChangePasswordRequest_password": {
+                "name": "password",
+                "in": "query",
+                "required": true,
+                "schema": {
+                    "type": "string"
+                }
+            },
+            "ApiChangePasswordRequest_password_confirmation": {
+                "name": "password_confirmation",
+                "in": "query",
+                "required": true,
+                "schema": {
+                    "type": "string"
+                }
+            },
+            "ApiChangeProfileRequest_name": {
+                "name": "name",
+                "in": "query",
+                "required": true,
+                "schema": {
+                    "type": "string"
+                }
+            }
+        },
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "description": "Login with email and password to get the authentication token",
+                "name": "Token Based",
+                "in": "header",
+                "bearerFormat": "JWT",
+                "scheme": "bearer"
+            }
+        }
+    }
+}

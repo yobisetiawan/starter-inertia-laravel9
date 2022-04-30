@@ -1,0 +1,30 @@
+.app-devider {
+    border: 1px solid #e0e0e0;
+    opacity: 0.5;
+}
+
+.app-devider-2 {
+    height: 4px;
+    background-color: #f4f5f7;
+}
+
+.app-devider-grid {
+    .grid-line {
+        position: relative;
+        &::before {
+            content: "";
+            position: absolute;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background-color: #f4f5f7;
+        }
+
+        &:last-child {
+            &::before {
+                width: 0;
+            }
+        }
+    }
+}

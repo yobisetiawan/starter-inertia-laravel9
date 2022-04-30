@@ -1,0 +1,47 @@
+.app-list-group {
+    border: 0;
+    border-radius: 0;
+    & > .list-group-item {
+        padding: 0;
+        border-left: 0;
+        background-color: transparent;
+        border-right: 0;
+        border-top: 0;
+        &:last-child {
+            border-bottom: 0;
+        }
+    }
+
+    &.with-last {
+        border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+    }
+}
+
+.app-list-days {
+    li {
+        margin-bottom: rem-size(16);
+
+        a {
+            display: block;
+            text-decoration: none;
+            border: 1px solid $success;
+            border-radius: rem-size(12);
+            padding: rem-size(12);
+            color: $success;
+        }
+        &.active {
+            a {
+                background-color: $success;
+                color: #fff;
+            }
+        }
+    }
+}
+
+.app-list-batches {
+    .app-devider-2 {
+        &:last-child {
+            display: none;
+        }
+    }
+}

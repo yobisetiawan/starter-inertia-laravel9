@@ -1,0 +1,20 @@
+@use "sass:math";
+
+// Variables
+@import "variables";
+
+html {
+    font-size: $normal_size + px;
+    @media (max-width: $mobile_size) {
+        font-size: 10px;
+    }
+}
+
+@function rem-size($pixel) {
+    @return math.div($pixel, $normal_size) + rem;
+}
+
+// Bootstrap
+@import "~bootstrap/scss/bootstrap"; 
+
+@import "components/loads";
