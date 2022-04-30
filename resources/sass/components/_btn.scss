@@ -59,34 +59,7 @@
     }
 }
 
-.app-li-btn {
-    & > div {
-        position: relative;
-        z-index: 2;
-    }
-
-    &::before {
-        content: "";
-        position: absolute;
-        left: -10px;
-        right: -10px;
-        top: -1px;
-        bottom: -1px;
-        border-radius: 12px;
-    }
-
-    &:hover {
-        &::before {
-            background-color: #f4f5f7;
-        }
-    }
-
-    &.selected {
-        &::before {
-            background-color: #fdead2;
-        }
-    }
-}
+ 
 
 .app-btn-outline-light {
     border: 1px solid #ffffff;
@@ -140,45 +113,7 @@
         }
     }
 }
-
-.app-btn-add {
-    border: 3px solid #f79420;
-    border-radius: rem-size(8);
-    min-width: rem-size(40);
-    min-height: rem-size(40);
-    align-items: center;
-    display: flex;
-    justify-content: center;
-    background-color: #fdead2;
-
-    &:hover,
-    &.active {
-        background-color: $primary;
-        #svg-path-icon-plus {
-            fill: white !important;
-        }
-    }
-}
-
-.app-btn-back {
-    border: 3px solid $white;
-    border-radius: rem-size(12);
-    min-width: rem-size(60);
-    min-height: rem-size(56);
-    align-items: center;
-    display: flex;
-    justify-content: center;
-    background-color: transparent;
-
-    &:hover,
-    &:focus {
-        background-color: $white;
-    }
-
-    &:focus {
-        box-shadow: none;
-    }
-}
+ 
 
 .app-btn-center-inline {
     display: inline-flex;
@@ -204,70 +139,7 @@
         box-shadow: none !important;
     }
 }
-
-.app-btn-setting {
-    min-width: rem-size(140);
-}
-
-.app-btn-order-details-menu-item {
-    border-radius: rem-size(12);
-    &:hover {
-        background-color: #f4f5f7;
-        cursor: pointer;
-    }
-    &.active {
-        background-color: #fdead2;
-    }
-}
-
-.app-btn-add-image {
-    border-radius: rem-size(12);
-    background-color: #e8f4d9;
-    background-size: cover;
-    position: relative;
-    width: 200px;
-    height: 200px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 3px solid #39b54a;
-    &.has-image {
-        border: 0;
-        background-color: #ddd;
-    }
-    &.has-link {
-        background-color: transparent;
-        border: 0;
-    }
-    .btn-actions {
-        position: absolute;
-        bottom: 0;
-        right: 0;
-        z-index: 10;
-    }
-    .app-file-dummy-label {
-        position: absolute;
-        top: 50%;
-        left: 0;
-        right: 0;
-        z-index: 10;
-        text-align: center;
-        background-color: rgba(0, 0, 0, 0.5);
-        color: $white;
-    }
-}
-
-.app-btn-order-details {
-    background: #ffffff;
-    border-radius: 0px 0px 8px 8px;
-    width: 60px;
-    height: 32px;
-    position: absolute;
-    right: 0;
-    top: 0;
-    box-shadow: 0px 6px 5px rgba(0, 0, 0, 0.15);
-    z-index: 20;
-}
+ 
 
 .app-btn-toggle-password {
     background: #fff;
@@ -287,7 +159,4 @@
         }
     }
 }
-
-.app-mt-btn-2 {
-    margin-top: 32px;
-}
+ 

@@ -14,15 +14,3 @@
         }
     }
 }
-
-.app-dropdown-order-list-people {
-    position: absolute;
-    right: rem-size(40);
-    top: 10px;
-}
-
-.app-dropdown-toggle2 {
-    &::after {
-        display: none !important;
-    }
-}
