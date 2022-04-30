@@ -23,7 +23,7 @@
         @endif
 
         @if (!empty($type) && $type == 'password')
-            <a href="#" class="app-btn-toggle-password text-decoration-none" @click="$store.basic.togglePassword($el, event)">
+            <a href="#" class="app-btn-toggle-password text-decoration-none" >
                 <i class="las la-eye"></i>
             </a>
         @endif
