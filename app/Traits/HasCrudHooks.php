@@ -8,33 +8,33 @@ trait HasCrudHooks
 
     public function __beforeStore()
     {
-        return false;
+        //empty code
     }
 
     public function __afterStore()
     {
-        return false;
+        //empty code
     }
 
 
     public function __beforeUpdate()
     {
-        return false;
+        //empty code
     }
 
 
     public function __afterUpdate()
     {
-        return false;
+        //empty code
     }
 
     public function __beforeDestroy()
     {
-        return false;
+        //empty code
     }
 
     public function __afterDestroy()
     {
-        return false;
+        //empty code
     }
 }

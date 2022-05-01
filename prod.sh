@@ -9,4 +9,6 @@ php artisan key:generate
 
 php artisan db:seed
 
+php artisan ziggy:generate
 php artisan storage:link
+npm run production

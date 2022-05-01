@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Web\Auth;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Inertia\Inertia;
 
 class LoginController extends Controller
 {
@@ -36,5 +38,11 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+
+    protected function loggedOut(Request $request)
+    {
+        return Inertia::location('/');
     }
 }

@@ -71,7 +71,9 @@ class BaseCrud extends Controller
 
                 $this->requestData = $req;
 
-                $this->__beforeStore();
+                if ($ress = $this->__beforeStore()) {
+                    return $ress;
+                }
 
                 $dt = new $this->model();
 
@@ -85,7 +87,9 @@ class BaseCrud extends Controller
 
                 $this->row = $dt;
 
-                $this->__afterStore();
+                if ($ress = $this->__afterStore()) {
+                    return $ress;
+                }
 
                 $this->__prepareLoadRelation($this->row);
 
@@ -121,7 +125,9 @@ class BaseCrud extends Controller
 
                 $this->row = $query->firstOrFail();
 
-                $this->__beforeUpdate();
+                if ($ress = $this->__beforeUpdate()) {
+                    return $ress;
+                }
 
                 $data = $req->validated();
 
@@ -131,7 +137,9 @@ class BaseCrud extends Controller
 
                 $this->row->save();
 
-                $this->__afterUpdate();
+                if ($ress = $this->__afterUpdate()) {
+                    return $ress;
+                }
 
                 $this->__prepareLoadRelation($this->row);
 
@@ -152,11 +160,15 @@ class BaseCrud extends Controller
 
                 $this->row = $query->firstOrFail();
 
-                $this->__beforeDestroy();
+                if ($ress = $this->__beforeDestroy()) {
+                    return $ress;
+                }
 
                 $this->row->delete();
 
-                $this->__afterDestroy();
+                if ($ress = $this->__afterDestroy()) {
+                    return $ress;
+                }
 
                 return $this->__successDestroy();
             }

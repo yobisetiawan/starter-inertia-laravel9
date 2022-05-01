@@ -2,21 +2,20 @@
 
 namespace App\Http\Controllers\Web\Profile;
 
-use App\Http\Controllers\Controller;
-use App\Http\Modules\BaseWebCrud;
+use App\Http\Modules\BaseInertiaCrud;
 use App\Http\Requests\Web\Profile\ChangeProfileRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class ProfileController extends BaseWebCrud
+class ProfileController extends BaseInertiaCrud
 {
 
     public $model = User::class;
 
     public $updateValidator = ChangeProfileRequest::class;
 
-    public $viewPath = 'pages.profile';
+    public $viewPath = 'Profile';
 
     public function index(Request $request)
     {

@@ -5,7 +5,7 @@
     @component('components.part.app_head')@endcomponent
 </head>
 
-<body x-data class="body-print">
+<body class="body-print">
     @yield('content')
     
     @yield('modal')

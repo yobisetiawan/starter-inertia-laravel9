@@ -1,54 +1,46 @@
-$width-sidebar: 230px;
+$width-sidebar: rem-size(250);
+
+#app {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  position: relative;
+}
 
 .app-logo {
-    padding: 20px;
-    background: rgba(255, 255, 255, 0.1);
-    margin-bottom: 30px;
+  min-height: 100px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: rem-size(10);
 }
 
-.app-main-menu {
-    padding: 20px;
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: $width-sidebar;
-    bottom: 0;
-    z-index: 100;
-    background: #453b40;
+.app-main-sidebar{
+  width: $width-sidebar;
+  position: relative;
 
-    @media (max-width: $mobile_size) {
-        left: -$width-sidebar;
-        top: 26px;
-
-        &.open-mobile {
-            left: 0;
-            width: 100%;
-        }
+  .list-menu {
+    a {
+      display: block;
+      padding: rem-size(10) rem-size(20);
     }
+  }
 }
 
-.app-toggle-main-menu {
-    position: relative;
-    z-index: 100;
-    padding: 6px 20px;
-    display: none;
-    background: #000;
-    @media (max-width: $mobile_size) {
-        display: block;
-    }
+.app-content-top {
+  position: relative;
 }
 
-.page-main-content {
-    &.with-nav {
-        margin-left: $width-sidebar;
-        @media (max-width: $mobile_size) {
-            margin-left: 0;
-        }
-    }
+.app-content {
+  position: relative;
+  border-radius: rem-size(30) 0 0 0;
+  box-shadow: 0px 4px 10px -4px rgba(0, 0, 0, 0.3) inset;
+  background-color: #f6fafc;
 }
 
-@media (max-width: $mobile_size) {
-    .link-logout {
-        display: none;
-    }
+.app-content-wrap {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  overflow-y: auto;
 }

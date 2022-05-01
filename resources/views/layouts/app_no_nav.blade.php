@@ -5,8 +5,8 @@
     @component('components.part.app_head')@endcomponent
 </head>
 
-<body x-data>
-    <div id="app"> 
+<body>
+    <div > 
         
         <main class="py-4">
             @yield('content')
