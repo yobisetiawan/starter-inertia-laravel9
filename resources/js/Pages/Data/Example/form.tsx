@@ -11,22 +11,119 @@ const Form = () => {
       description: "",
       number: "",
       password: "",
-      webcam: ""
+      webcam: "",
+      cover: [],
+      is_default: false,
+      gender: "",
+      check_point: [],
+      datepicker: "",
+      selec: "",
+      multi_select: []
     },
   })
 
   const onSubmit = (data: any) => {
-    Inertia.post(route("web.data.example.store"), data, {
-      preserveState: true,
-    })
+    console.log(data)
+    // Inertia.post(route("web.data.example.store"), data, {
+    //   preserveState: true,
+    // })
   }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="mb-4">
       <Input control={control} name="title" label="Title" placeholder="Title" />
-      <Input control={control} name="number" type="number" label="Number" placeholder="Number" />
-      <Input control={control} name="password" type="password" label="Password" placeholder="Password" />
-      <Input control={control} type="textarea" name="description" label="Description" placeholder="Description"/>
+      <Input
+        control={control}
+        name="number"
+        type="number"
+        label="Number"
+        placeholder="Number"
+      />
+      <Input
+        control={control}
+        name="password"
+        type="password"
+        label="Password"
+        placeholder="Password"
+      />
+      <Input
+        control={control}
+        type="textarea"
+        name="description"
+        label="Description"
+        placeholder="Description"
+      />
+
+      <Input control={control} name="cover" type="file" label="Cover" />
+
+      <Input
+        control={control}
+        name="is_default"
+        type="checkbox"
+        label="Is Default"
+        labelCheckbox="Yes I agree"
+      />
+
+      <div className="d-flex">
+        <Input
+          control={control}
+          name="gender"
+          type="radio"
+          labelRadio="Female"
+          radioIntial="F"
+          classGroup="d-flex me-3"
+        />
+        <Input
+          control={control}
+          name="gender"
+          type="radio"
+          labelRadio="Male"
+          radioIntial="M"
+          classGroup="d-flex"
+        />
+      </div>
+
+      <Input
+        control={control}
+        name="check_point"
+        type="checkboxes"
+        optionsCheck={["1", "2", "3"]}
+        labelsCheck={["satu", "dua", "tiga"]}
+        classGroup="d-flex"
+      />
+
+      <Input
+        control={control}
+        name="datepicker"
+        type="datepicker"
+        label="Datepicker"
+        placeholder="Datepicker"
+      />
+
+      <Input
+        control={control}
+        name="select"
+        type="select"
+        label="Select" 
+        selectOptions={[
+          { value: "chocolate", label: "Chocolate" },
+          { value: "strawberry", label: "Strawberry" },
+          { value: "vanilla", label: "Vanilla" },
+        ]}
+      />
+
+      <Input
+        control={control}
+        name="multi_select"
+        type="selects"
+        label="Multi Select"
+         
+        selectOptions={[
+          { value: "chocolate", label: "Chocolate" },
+          { value: "strawberry", label: "Strawberry" },
+          { value: "vanilla", label: "Vanilla" },
+        ]}
+      />
 
       {/* <Input control={control} type="webcam" name="webcam" label="Webcam"/> */}
 
