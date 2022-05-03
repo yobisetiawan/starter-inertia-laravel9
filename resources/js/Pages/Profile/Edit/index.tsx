@@ -36,7 +36,7 @@ const Page = () => {
         )}
 
         <form onSubmit={handleSubmit(onSubmit)} className="mb-4">
-          <Input control={control} name="name" />
+          <Input control={control} name="name" label="Name" />
 
           <input type="submit" className="btn btn-primary app-btn" />
         </form>

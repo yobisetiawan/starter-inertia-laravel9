@@ -33,12 +33,13 @@ const Page = () => {
         <h1>Change Password</h1>
 
         <form onSubmit={handleSubmit(onSubmit)}>
-          <Input control={control} name="old_password" type="password" />
-          <Input control={control} name="password" type="password" />
+          <Input control={control} name="old_password" type="password" label="Old Password" />
+          <Input control={control} name="password" type="password" label="Password"/>
           <Input
             control={control}
             name="password_confirmation"
             type="password"
+            label="Password Confirmation"
           />
 
           <input type="submit" className="btn btn-primary app-btn" />

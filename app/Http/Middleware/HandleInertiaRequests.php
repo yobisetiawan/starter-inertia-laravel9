@@ -37,14 +37,18 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request): array
     {
+        $user = Auth::user();
+        if ($user) {
+            $user->load(
+                ['avatar' => function ($q) {
+                    $q->select('url', 'fileable_type', 'fileable_id', 'updated_at');
+                }]
+            );
+        }
         return array_merge(parent::share($request), [
             'config' => ['name' => config('app.name')],
             'auth' => [
-                'user' => Auth::user()->load(
-                    ['avatar' => function ($q) {
-                        $q->select('url', 'fileable_type', 'fileable_id', 'updated_at');
-                    }]
-                ),
+                'user' => $user,
                 'roles' => [],
                 'permissions' => []
             ],

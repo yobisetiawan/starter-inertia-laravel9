@@ -6,12 +6,14 @@ interface Props {
   control: any
   name: string
   type: "text" | "password" | "file"
+  label?: string
 }
 
-const Input = ({ control, name, type }: Props) => {
+const Input = ({ control, name, type, label }: Props) => {
   const { errors } = usePage().props as any
   return (
     <div className="mb-3">
+      {label && <label className="form-label">{label}</label>}
       <Controller
         name={name}
         control={control}

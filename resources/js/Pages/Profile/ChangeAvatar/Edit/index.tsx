@@ -31,7 +31,7 @@ const Page = () => {
         <h1>Change Avatar</h1>
 
         <form onSubmit={handleSubmit(onSubmit)} className="mb-4">
-          <Input control={control} name="avatar" type="file" />
+          <Input control={control} name="avatar" type="file" label="Avatar" />
 
           <input type="submit" className="btn btn-primary app-btn" />
         </form>
