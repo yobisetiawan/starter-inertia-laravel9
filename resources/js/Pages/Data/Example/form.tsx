@@ -18,7 +18,8 @@ const Form = () => {
       check_point: [],
       datepicker: "",
       selec: "",
-      multi_select: []
+      multi_select: [],
+      texteditor: "",
     },
   })
 
@@ -104,7 +105,7 @@ const Form = () => {
         control={control}
         name="select"
         type="select"
-        label="Select" 
+        label="Select"
         selectOptions={[
           { value: "chocolate", label: "Chocolate" },
           { value: "strawberry", label: "Strawberry" },
@@ -117,12 +118,18 @@ const Form = () => {
         name="multi_select"
         type="selects"
         label="Multi Select"
-         
         selectOptions={[
           { value: "chocolate", label: "Chocolate" },
           { value: "strawberry", label: "Strawberry" },
           { value: "vanilla", label: "Vanilla" },
         ]}
+      />
+
+      <Input
+        control={control}
+        name="texteditor"
+        type="texteditor"
+        label="Text Editor"
       />
 
       {/* <Input control={control} type="webcam" name="webcam" label="Webcam"/> */}

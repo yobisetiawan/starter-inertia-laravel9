@@ -4,6 +4,8 @@ import DatePicker from "react-datepicker"
 import { Controller } from "react-hook-form"
 import Webcam from "react-webcam"
 import Select from "react-select"
+import TextEditor from "./TextEditor"
+import { EditorState } from "draft-js"
 
 interface Props {
   control: any
@@ -21,6 +23,7 @@ interface Props {
     | "datepicker"
     | "select"
     | "selects"
+    | "texteditor"
   label?: string
   labelCheckbox?: string
   labelRadio?: string
@@ -242,6 +245,20 @@ const Input = ({
                   field.onChange(selected)
                 }}
                 isMulti
+              />
+            )
+          } else if (type === "texteditor") {
+            let eState = field.value
+            if (field.value == "") {
+              eState = EditorState.createEmpty()
+            }
+
+            return (
+              <TextEditor
+                editorState={eState}
+                onChange={(e: any) => {
+                  field.onChange(e)
+                }}
               />
             )
           } else {

@@ -1,84 +1,93 @@
 .app-form-control {
-    &.form-control {
-        border-radius: rem-size(8);
-        padding: rem-size(12) rem-size(16);
+  &.form-control {
+    border-radius: rem-size(8);
+    padding: rem-size(12) rem-size(16);
 
-        &.form-control-sm {
-            padding: rem-size(8) rem-size(16);
-        }
+    &.form-control-sm {
+      padding: rem-size(8) rem-size(16);
     }
+  }
 }
 
 .app-form-select {
-    &.form-select {
-        border-radius: rem-size(8);
-        padding: rem-size(12) rem-size(16);
-    }
+  &.form-select {
+    border-radius: rem-size(8);
+    padding: rem-size(12) rem-size(16);
+  }
 }
 
 .app-end-label {
-    position: absolute;
-    right: 10px;
-    top: 51%;
-    margin-top: -13px;
+  position: absolute;
+  right: 10px;
+  top: 51%;
+  margin-top: -13px;
 }
 
 .app-start-label {
-    position: absolute;
-    left: 10px;
-    top: 51%;
-    margin-top: -13px;
+  position: absolute;
+  left: 10px;
+  top: 51%;
+  margin-top: -13px;
 }
 
 .app-invalid-feedback {
-    &.invalid-feedback {
-        display: block;
-        font-size: rem-size(14);
-    }
+  &.invalid-feedback {
+    display: block;
+    font-size: rem-size(14);
+  }
 }
 
 .app-form-check {
+  &.form-check {
+    .form-check-input {
+      width: rem-size(36);
+      height: rem-size(36);
+      border-radius: rem-size(8);
+
+      &:checked[type="checkbox"],
+      &:checked[type="radio"] {
+        background-image: url("/images/icons/check.png");
+        background-color: $success;
+        border-color: $success;
+        background-size: 50%;
+      }
+    }
+
+    .form-check-input.sm {
+      width: rem-size(32);
+      height: rem-size(32);
+    }
+  }
+
+  &.app-form-check-sm {
     &.form-check {
-        .form-check-input {
-            width: rem-size(36);
-            height: rem-size(36);
-            border-radius: rem-size(8);
-
-            &:checked[type="checkbox"],
-            &:checked[type="radio"] {
-                background-image: url("/images/icons/check.png");
-                background-color: $success;
-                border-color: $success;
-                background-size: 50%;
-            }
-        }
-
-        .form-check-input.sm {
-            width: rem-size(32);
-            height: rem-size(32);
-        }
+      .form-check-input {
+        width: rem-size(24);
+        height: rem-size(24);
+      }
     }
-
-    &.app-form-check-sm {
-        &.form-check {
-            .form-check-input {
-                width: rem-size(24);
-                height: rem-size(24);
-            }
-        }
-    }
+  }
 }
 
 .app-form-search {
-    position: relative;
+  position: relative;
 
-    .icon-search {
-        position: absolute;
-        right: 0;
-        top: 0;
-    }
+  .icon-search {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
 
-    .form-control {
-        padding-right: 35px !important;
-    }
+  .form-control {
+    padding-right: 35px !important;
+  }
+}
+
+.app-wrapper-editor {
+  background: $white;
+
+  .app-editor {
+    min-height: 200px;
+    padding: 0 rem-size(20);
+  }
 }
