@@ -1,5 +1,5 @@
 import { usePage } from "@inertiajs/inertia-react"
-import React, { useEffect, useState } from "react"
+import React, { memo, useEffect, useState } from "react"
 import { Alert } from "react-bootstrap"
 
 // interface Props {
@@ -48,4 +48,4 @@ const FlashAlert = () => {
   return <></>
 }
 
-export default FlashAlert
+export default memo(FlashAlert)

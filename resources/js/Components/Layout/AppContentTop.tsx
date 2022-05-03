@@ -1,5 +1,5 @@
 import { Link } from "@inertiajs/inertia-react"
-import React from "react"
+import React, { memo } from "react"
 
 // interface Props {
 
@@ -29,4 +29,6 @@ const AppContentTop = () => {
   )
 }
 
-export default AppContentTop
+AppContentTop.defaultProps = {}
+
+export default memo(AppContentTop)

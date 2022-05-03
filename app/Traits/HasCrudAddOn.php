@@ -54,17 +54,17 @@ trait HasCrudAddOn
 
     public function __successStore()
     {
-        return redirect()->back()->with('success_msg', $this->successStoreMsg);
+        return redirect()->back()->with('success_message', $this->successStoreMsg);
     }
 
     public function __successUpdate()
     {
-        return redirect()->back()->with('success_msg', $this->successUpdateMsg);
+        return redirect()->back()->with('success_message', $this->successUpdateMsg);
     }
 
     public function __successDestroy()
     {
-        return redirect()->back()->with('success_msg', $this->successDestroyMsg);
+        return redirect()->back()->with('success_message', $this->successDestroyMsg);
     }
 
     public function __prepareQueryListType($query)

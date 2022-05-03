@@ -1,5 +1,5 @@
 import { Link } from "@inertiajs/inertia-react"
-import React from "react"
+import React, { memo } from "react"
 import { route } from "../../Helper"
 
 // interface Props {
@@ -9,8 +9,7 @@ import { route } from "../../Helper"
 const AppMainMenu = () => {
   const menu = [
     { title: "Dashboard", route: route("web.dashboard") },
-    { title: "Profile", route: route("web.profile.show") },
-    { title: "Users", route: route("web.dashboard") },
+    { title: "Profile", route: route("web.profile.show") }, 
     { title: "Example", route: route("web.dashboard") },
   ]
   return (
@@ -35,4 +34,6 @@ const AppMainMenu = () => {
   )
 }
 
-export default AppMainMenu
+AppMainMenu.defaultProps = {}
+
+export default memo(AppMainMenu)

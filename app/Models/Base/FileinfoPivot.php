@@ -15,6 +15,11 @@ class FileinfoPivot extends Model
     
     public $timestamps = true;
 
+    protected $hidden = [
+        'fileable_type',
+        'fileable_id',
+    ];
+
     public function fileable()
     {
         return $this->morphTo();

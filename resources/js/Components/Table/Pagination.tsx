@@ -1,5 +1,5 @@
 import { Link } from "@inertiajs/inertia-react"
-import React from "react"
+import React, { memo } from "react"
 
 interface Props {
   paginate: any
@@ -26,4 +26,6 @@ const Pagination = ({ paginate }: Props) => {
   )
 }
 
-export default Pagination
+Pagination.defaultProps = {}
+
+export default memo(Pagination)

@@ -1,5 +1,5 @@
 import { Link, usePage } from "@inertiajs/inertia-react"
-import React from "react"
+import React, { memo } from "react"
 import { IoIosArrowRoundDown, IoIosArrowRoundUp } from "react-icons/io"
 import { route } from "../../Helper"
 
@@ -39,4 +39,6 @@ const ColumnSort = ({ field, title, routeName }: Props) => {
   )
 }
 
-export default ColumnSort
+ColumnSort.defaultProps = {}
+
+export default memo(ColumnSort)

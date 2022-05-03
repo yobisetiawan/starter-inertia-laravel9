@@ -2,22 +2,21 @@
 
 namespace App\Http\Controllers\Web\Profile;
 
-use App\Http\Modules\BaseWebCrud;
+use App\Http\Modules\BaseInertiaCrud;
 use App\Http\Requests\Web\Profile\ChangePasswordRequest;
-use App\Http\Requests\Web\Profile\ChangeProfileRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
-class ChangePasswordController extends BaseWebCrud
+class ChangePasswordController extends BaseInertiaCrud
 {
 
     public $model = User::class;
 
     public $updateValidator = ChangePasswordRequest::class;
 
-    public $viewPath = 'pages.profile.password';
+    public $viewPath = 'Profile/ChangePassword';
 
     public function index(Request $request)
     {

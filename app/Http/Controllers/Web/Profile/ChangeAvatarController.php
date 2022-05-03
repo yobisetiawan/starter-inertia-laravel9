@@ -3,23 +3,21 @@
 namespace App\Http\Controllers\Web\Profile;
 
 use App\Constants\FileUploadConst;
-use App\Http\Modules\BaseWebCrud;
+use App\Http\Modules\BaseInertiaCrud;
 use App\Http\Requests\Web\Profile\ChangeAvatarRequest;
-use App\Http\Requests\Web\Profile\ChangePasswordRequest;
-use App\Http\Requests\Web\Profile\ChangeProfileRequest;
 use App\Models\User;
 use App\Services\UploadService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class ChangeAvatarController extends BaseWebCrud
+class ChangeAvatarController extends BaseInertiaCrud
 {
 
     public $model = User::class;
 
     public $updateValidator = ChangeAvatarRequest::class;
 
-    public $viewPath = 'pages.profile.avatar';
+    public $viewPath = 'Profile/ChangeAvatar';
 
     public function index(Request $request)
     {

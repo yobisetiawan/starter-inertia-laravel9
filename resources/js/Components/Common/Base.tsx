@@ -1,4 +1,4 @@
-import React from "react"
+import React, { memo } from "react"
 
 // interface Props {
 
@@ -8,4 +8,6 @@ const Base = () => {
   return <div></div>
 }
 
-export default Base
+Base.defaultProps = {}
+
+export default memo(Base)

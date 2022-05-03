@@ -1,5 +1,5 @@
-import { Head, Link, usePage } from "@inertiajs/inertia-react"
-import React from "react"
+import { Head, usePage } from "@inertiajs/inertia-react"
+import React, { memo } from "react"
 import AppContentTop from "./AppContentTop"
 import AppMainMenu from "./AppMainMenu"
 
@@ -18,11 +18,15 @@ const AppLayout = ({ children, title }: Props) => {
         <AppMainMenu />
       </div>
       <div className="app-main-content flex-fill d-flex flex-column">
-        <div className="app-content-top"><AppContentTop/></div>
+        <div className="app-content-top">
+          <AppContentTop />
+        </div>
         <div className="app-content flex-fill">{children}</div>
       </div>
     </>
   )
 }
 
-export default AppLayout
+AppLayout.defaultProps = {}
+
+export default memo(AppLayout)
