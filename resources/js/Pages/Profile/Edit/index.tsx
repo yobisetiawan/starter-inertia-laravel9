@@ -5,10 +5,6 @@ import { useForm } from "react-hook-form"
 import { AppLayout, FlashAlert, Input } from "../../../Components"
 import { route } from "../../../Helper"
 
-// interface Props {
-
-// }
-
 const Page = () => {
   const { auth } = usePage().props as any
   const { control, handleSubmit } = useForm({

@@ -1,11 +1,14 @@
 import React from "react"
-
-// interface Props {
-
-// }
+import { AppLayout } from "../../../Components"
 
 const Page = () => {
-  return <div>Example</div>
+  return (
+    <AppLayout>
+      <div className="app-content-wrap p-4">
+        <h1>Example</h1>
+      </div>
+    </AppLayout>
+  )
 }
 
 export default Page

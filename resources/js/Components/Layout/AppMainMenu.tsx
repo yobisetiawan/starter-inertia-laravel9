@@ -2,14 +2,10 @@ import { Link } from "@inertiajs/inertia-react"
 import React, { memo } from "react"
 import { route } from "../../Helper"
 
-// interface Props {
-
-// }
-
 const AppMainMenu = () => {
   const menu = [
     { title: "Dashboard", route: route("web.dashboard") },
-    { title: "Profile", route: route("web.profile.index") }, 
+    { title: "Profile", route: route("web.profile.index") },
     { title: "Example", route: route("web.data.example.index") },
   ]
   return (

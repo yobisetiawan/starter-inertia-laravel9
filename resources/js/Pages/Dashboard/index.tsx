@@ -1,10 +1,6 @@
 import React from "react"
 import { AppLayout } from "../../Components"
 
-// interface Props {
-
-// }
-
 const Page = () => {
   return (
     <AppLayout>

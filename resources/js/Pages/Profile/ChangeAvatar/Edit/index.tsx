@@ -1,13 +1,8 @@
 import { Inertia } from "@inertiajs/inertia"
-import { Link, usePage } from "@inertiajs/inertia-react"
 import React from "react"
 import { useForm } from "react-hook-form"
 import { AppLayout, FlashAlert, Input } from "../../../../Components"
 import { route } from "../../../../Helper"
-
-// interface Props {
-
-// }
 
 const Page = () => {
   const { control, handleSubmit } = useForm({

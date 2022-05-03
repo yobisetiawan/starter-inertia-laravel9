@@ -2,10 +2,6 @@ import { usePage } from "@inertiajs/inertia-react"
 import React, { memo, useEffect, useState } from "react"
 import { Alert } from "react-bootstrap"
 
-// interface Props {
-
-// }
-
 const FlashAlert = () => {
   const { flash } = usePage().props as any
 
@@ -18,7 +14,6 @@ const FlashAlert = () => {
       setShow(false)
     }
   }, [flash])
-  
 
   if (show && flash?.success_message) {
     return (
