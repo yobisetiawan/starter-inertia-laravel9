@@ -12,7 +12,11 @@ class CreateExamplesTable extends Migration
 		Schema::create('examples', function (Blueprint $table) {
 			$table->increments('id');
 			$table->uuid('uuid')->unique();
+			
 			$table->string('title')->nullable();
+			$table->string('password')->nullable();
+			$table->string('number')->nullable();
+			 
 			$table->text('description')->nullable();
 			$table->text('rich_text')->nullable();
 
