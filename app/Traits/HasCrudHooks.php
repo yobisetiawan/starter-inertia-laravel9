@@ -5,6 +5,35 @@ namespace App\Traits;
 trait HasCrudHooks
 {
 
+    public function __beforeList()
+    {
+        //empty code
+    }
+
+    public function __afterList()
+    {
+        //empty code
+    }
+
+    public function __beforeShow()
+    {
+        //empty code
+    }
+
+    public function __afterShow()
+    {
+        //empty code
+    }
+
+    public function __beforeCreate()
+    {
+        //empty code
+    }
+
+    public function __afterCreate()
+    {
+        //empty code
+    }
 
     public function __beforeStore()
     {
@@ -16,6 +45,15 @@ trait HasCrudHooks
         //empty code
     }
 
+    public function __beforeEdit()
+    {
+        //empty code
+    }
+
+    public function __afterEdit()
+    {
+        //empty code
+    }
 
     public function __beforeUpdate()
     {

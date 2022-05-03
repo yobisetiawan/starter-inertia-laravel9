@@ -8,7 +8,7 @@ use Inertia\Inertia;
 
 class BaseInertiaCrud extends BaseWebCrud
 {
-    
+
     public function __viewList($data)
     {
         return Inertia::render($this->viewPath . '/index', $data);
@@ -35,5 +35,11 @@ class BaseInertiaCrud extends BaseWebCrud
         return $data;
     }
 
-
+    public function __prepareListPaginationAppend($query)
+    {
+        foreach (request()->all() as $key => $value) {
+            $query->appends($key, $value);
+        }
+        return  $query;
+    }
 }

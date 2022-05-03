@@ -11,6 +11,10 @@ class BaseWebCrud extends BaseCrud
 
     public function create()
     {
+        if ($ress = $this->__beforeCreate()) {
+            return $ress;
+        }
+
         $data['row'] = $this->row;
 
         $data = $this->__extraDataCreate($data);
@@ -21,6 +25,10 @@ class BaseWebCrud extends BaseCrud
 
     public function edit($id)
     {
+        if ($ress = $this->__beforeEdit()) {
+            return $ress;
+        }
+
         $query = $this->model::where($this->modelKey, $id);
 
         $this->__prepareQueryRelationShow($query);

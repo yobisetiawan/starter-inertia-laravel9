@@ -49,6 +49,10 @@ class BaseCrud extends Controller
 
         $query = $this->model::query();
 
+        if ($ress = $this->__beforeList()) {
+            return $ress;
+        }        
+
         $this->__prepareQueryRelationList($query);
 
         $this->__prepareQueryList($query);
@@ -69,17 +73,17 @@ class BaseCrud extends Controller
             function () {
                 $req = app($this->storeValidator);
 
-                $this->requestData = $req;
-
-                if ($ress = $this->__beforeStore()) {
-                    return $ress;
-                }
+                $this->requestData = $req; 
 
                 $dt = new $this->model();
 
                 $data = $req->validated();
 
                 $data = $this->__prepareDataStore($data);
+
+                if ($ress = $this->__beforeStore()) {
+                    return $ress;
+                }
 
                 $dt->fill($data);
 
@@ -102,6 +106,10 @@ class BaseCrud extends Controller
     {
         $query = $this->model::where($this->modelKey, $id);
 
+        if ($ress = $this->__beforeShow()) {
+            return $ress;
+        }
+
         $this->__prepareQueryRelationShow($query);
 
         $this->__prepareQueryRowShow($query);
@@ -123,15 +131,15 @@ class BaseCrud extends Controller
 
                 $this->__prepareQueryRowUpdate($query);
 
-                $this->row = $query->firstOrFail();
-
-                if ($ress = $this->__beforeUpdate()) {
-                    return $ress;
-                }
+                $this->row = $query->firstOrFail();  
 
                 $data = $req->validated();
 
                 $data = $this->__prepareDataUpdate($data);
+
+                if ($ress = $this->__beforeUpdate()) {
+                    return $ress;
+                }
 
                 $this->row->fill($data);
 
