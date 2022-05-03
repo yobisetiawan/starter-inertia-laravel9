@@ -9,8 +9,8 @@ import { route } from "../../Helper"
 const AppMainMenu = () => {
   const menu = [
     { title: "Dashboard", route: route("web.dashboard") },
-    { title: "Profile", route: route("web.profile.show") }, 
-    { title: "Example", route: route("web.dashboard") },
+    { title: "Profile", route: route("web.profile.index") }, 
+    { title: "Example", route: route("web.data.example.index") },
   ]
   return (
     <div className="app-content-wrap">

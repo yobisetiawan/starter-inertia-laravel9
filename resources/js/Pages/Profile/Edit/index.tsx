@@ -18,7 +18,7 @@ const Page = () => {
   })
 
   const onSubmit = (data: any) => {
-    Inertia.post(route("web.profile.save"), data, {
+    Inertia.post(route("web.profile.store"), data, {
       preserveState: true,
     })
   }
@@ -42,13 +42,13 @@ const Page = () => {
         </form>
 
         <div>
-          <Link href={route("web.profile.change.password")}>
+          <Link href={route("web.profile.password.index")}>
             Change Password
           </Link>
         </div>
 
         <div>
-          <Link href={route("web.profile.change.avatar")}>Change Avatar</Link>
+          <Link href={route("web.profile.avatar.index")}>Change Avatar</Link>
         </div>
       </div>
     </AppLayout>
