@@ -10,7 +10,7 @@ use App\Models\User;
 use App\Services\UploadService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
- 
+
 
 class ChangeAvatarController extends BaseCrud
 {
@@ -31,7 +31,6 @@ class ChangeAvatarController extends BaseCrud
     }
 
     public function __beforeUpdate()
-
     {
         $upload = new UploadService(
             $this->requestData->file('avatar'),
@@ -42,8 +41,6 @@ class ChangeAvatarController extends BaseCrud
         $upload->uploadResize(300);
 
         $this->uploaded = $upload;
-
-        return false;
     }
 
     public function __afterupdate()
@@ -52,7 +49,5 @@ class ChangeAvatarController extends BaseCrud
         if ($this->uploaded) {
             $this->uploaded->saveFileInfo($this->row->avatar(), ['slug' =>  FileUploadConst::USER_AVATAR_SLUG]);
         }
-
-        return false;
     }
 }

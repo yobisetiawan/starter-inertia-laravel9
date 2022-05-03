@@ -7,34 +7,65 @@ use App\Events\UserResetPasswordEvent;
 trait HasAuthHooks
 {
 
+    public function __beforeLogin()
+    {
+        //empty code
+    }
+
+    public function __afterLogin()
+    {
+        //empty code
+    }
+
+
     public function __beforeRegister()
     {
-        return false;
+        //empty code
     }
 
     public function __afterRegister()
     {
-        return false;
+        //empty code
+    }
+
+    public function __beforeForgotPassword()
+    {
+        //empty code
     }
 
     public function __afterForgotPassword()
     {
-        return false;
+        //empty code
+    }
+
+    public function __beforeVerifyResetPassword()
+    {
+        //empty code
     }
 
     public function __afterVerifyResetPassword()
     {
-        return false;
+        //empty code
     }
 
 
     public function __beforeResetPassword()
     {
-        return false;
+        //empty code
     }
 
     public function __afterResetPassword()
     {
-        return false;
+        //empty code
+    }
+
+    public function __beforeLogout()
+    {
+        //empty code
+    }
+
+    public function __afterLogout()
+    {
+        //empty code
     }
 }

@@ -43,8 +43,6 @@ class ChangeAvatarController extends BaseInertiaCrud
         $upload->uploadResize(300);
 
         $this->uploaded = $upload;
-
-        return false;
     }
 
     public function __afterupdate()
@@ -53,7 +51,5 @@ class ChangeAvatarController extends BaseInertiaCrud
         if ($this->uploaded) {
             $this->uploaded->saveFileInfo($this->row->avatar(), ['slug' =>  FileUploadConst::USER_AVATAR_SLUG]);
         }
-
-        return false;
     }
 }

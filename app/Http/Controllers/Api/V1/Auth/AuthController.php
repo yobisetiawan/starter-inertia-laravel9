@@ -24,23 +24,23 @@ class AuthController extends BaseAuth
     public function __afterForgotPassword()
     {
         $repo = new ForgotPasswordRepository;
-        return $repo->sendNotifForgotPassword($this->user);
+        $repo->sendNotifForgotPassword($this->user);
     }
 
     public function __afterVerifyResetPassword()
     {
         $repo = new VerifyPasswordRepository;
-        return $repo->verifyResetPassword($this->user, request('code'));
+        $repo->verifyResetPassword($this->user, request('code'));
     }
 
     public function __beforeResetPassword()
     {
-        return $this->__afterVerifyResetPassword();
+        $this->__afterVerifyResetPassword();
     }
 
     public function __afterResetPassword()
     {
         $repo =  new ResetPasswordRepository;
-        return  $repo->notifyAfterResetPassword($this->user);
+        $repo->notifyAfterResetPassword($this->user);
     }
 }

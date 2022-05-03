@@ -43,6 +43,10 @@ class BaseAuth extends Controller
 
         $row = $query->first();
 
+        if ($ress = $this->__beforeLogin()) {
+            return $ress;
+        }
+
         if ($row && Hash::check($req->input($this->passwordInputField), $row->password)) {
 
             $this->user = $row;
@@ -58,11 +62,19 @@ class BaseAuth extends Controller
     {
         $row = Auth::user();
 
+        if ($ress = $this->__beforeLogout()) {
+            return $ress;
+        }
+
         if ($row) {
 
             $this->user = $row;
 
             $row->token()->revoke();
+
+            if ($ress = $this->__afterLogout()) {
+                return $ress;
+            }
         }
 
         return $this->__successLogout();
@@ -84,15 +96,19 @@ class BaseAuth extends Controller
 
             $data = $this->__prepareDataRegister($data);
 
-            $row->fill($data);
+            if ($ress = $this->__beforeRegister()) {
+                return $ress;
+            }
 
-            $this->__beforeRegister();
+            $row->fill($data);
 
             $row->save();
 
             $this->user = $row;
 
-            $this->__afterRegister();
+            if ($ress = $this->__afterRegister()) {
+                return $ress;
+            }
 
             return $this->__successRegister();
         });
@@ -111,11 +127,13 @@ class BaseAuth extends Controller
 
         $row = $query->first();
 
+        if ($ress = $this->__beforeForgotPassword()) {
+            return $ress;
+        }
+
         if ($row) {
 
             $this->user = $row;
-
-            $this->__afterForgotPassword();
 
             return $this->__successForgotPassword();
         }
@@ -135,11 +153,13 @@ class BaseAuth extends Controller
 
         $row = $query->first();
 
+        if ($ress = $this->__beforeVerifyResetPassword()) {
+            return $ress;
+        }
+
         if ($row) {
 
             $this->user = $row;
-
-            $this->__afterVerifyResetPassword();
 
             return $this->__successVerifyResetPassword();
         }
@@ -169,13 +189,13 @@ class BaseAuth extends Controller
 
                 $data = $this->__prepareDataResetPassword($data);
 
-                $this->__beforeResetPassword();
+                if ($ress = $this->__beforeResetPassword()) {
+                    return $ress;
+                }
 
                 $row->fill($data);
 
                 $row->save();
-
-                $this->__afterResetPassword();
 
                 return $this->__successResetPassword();
             }
