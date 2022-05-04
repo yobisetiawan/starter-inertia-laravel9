@@ -72,3 +72,9 @@
     }
   }
 }
+
+.app-datetime-picker {
+  .react-datepicker__triangle {
+    left: -15px !important;
+  }
+}

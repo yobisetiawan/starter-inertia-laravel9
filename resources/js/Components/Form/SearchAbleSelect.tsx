@@ -3,26 +3,26 @@ import { ControllerRenderProps, FieldValues } from "react-hook-form"
 import Select from "react-select"
 
 interface Props {
-  selectOptions: Array<any>
+  listOptions: Array<any>
   field: ControllerRenderProps<FieldValues, string>
-  type: "select" | "selects"
+  type: "select" | "multi-select"
   placeholder?: string
 }
 
 const SearchAbleSelect = ({
-  selectOptions,
+  listOptions,
   field,
   type,
   placeholder,
 }: Props) => {
-  if (type === "selects") {
+  if (type === "multi-select") {
     return (
       <div className="app-select">
         <Select
           classNamePrefix="app-searchable-select"
-          options={selectOptions}
+          options={listOptions}
           placeholder={placeholder || "Select"}
-          value={selectOptions.map((x) => {
+          value={listOptions.map((x) => {
             if (field.value.includes(x.value)) {
               return x
             }
@@ -43,9 +43,9 @@ const SearchAbleSelect = ({
     <div className="app-select">
       <Select
         classNamePrefix="app-searchable-select"
-        options={selectOptions}
+        options={listOptions}
         placeholder={placeholder || "Select"}
-        value={selectOptions.find((x) => x.value == field.value)}
+        value={listOptions.find((x) => x.value == field.value)}
         onChange={(e: any) => {
           field.onChange(e.value)
         }}
@@ -54,6 +54,8 @@ const SearchAbleSelect = ({
   )
 }
 
-SearchAbleSelect.defaultProps = {}
+SearchAbleSelect.defaultProps = {
+  listOptions: []
+}
 
 export default memo(SearchAbleSelect)

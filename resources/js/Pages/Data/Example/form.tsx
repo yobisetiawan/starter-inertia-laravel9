@@ -1,9 +1,7 @@
-import { Inertia } from "@inertiajs/inertia"
 import { EditorState } from "draft-js"
 import React from "react"
 import { useForm } from "react-hook-form"
 import { Input } from "../../../Components"
-import { route } from "../../../Helper"
 
 const Form = () => {
   const { control, handleSubmit } = useForm({
@@ -13,14 +11,15 @@ const Form = () => {
       number: "",
       password: "",
       webcam: "",
-      cover: [],
       is_default: false,
       gender: "",
       check_point: [],
       datepicker: "",
-      selec: "",
+      select: "",
       multi_select: [],
       texteditor: EditorState.createEmpty(),
+      cover: [],
+      gallery: [],
     },
   })
 
@@ -56,45 +55,36 @@ const Form = () => {
         placeholder="Description"
       />
 
-      <Input control={control} name="cover" type="file" label="Cover" />
-
       <Input
         control={control}
         name="is_default"
         type="checkbox"
         label="Is Default"
+        value="1"
         labelCheckbox="Yes I agree"
       />
 
-      <div className=" mb-3">
-        <div>
-          <label className="form-label">Gender</label>
-        </div>
-        <Input
-          control={control}
-          name="gender"
-          type="radio"
-          labelRadio="Female"
-          radioIntial="F"
-          classGroup="d-flex me-3"
-        />
-        <Input
-          control={control}
-          name="gender"
-          type="radio"
-          labelRadio="Male"
-          radioIntial="M"
-          classGroup="d-flex"
-        />
-      </div>
+      <Input
+        control={control}
+        label="Gender"
+        name="gender"
+        type="radio"
+        listOptions={[
+          { value: "F", label: "Female" },
+          { value: "M", label: "Male" },
+        ]}
+      />
 
       <Input
         control={control}
         label="Multi Checkboxs"
         name="check_point"
-        type="checkboxes"
-        optionsCheck={["1", "2", "3"]}
-        labelsCheck={["satu", "dua", "tiga"]}
+        type="multi-checkbox"
+        listOptions={[
+          { value: "chocolate", label: "Chocolate" },
+          { value: "strawberry", label: "Strawberry" },
+          { value: "vanilla", label: "Vanilla" },
+        ]}
       />
 
       <Input
@@ -110,7 +100,7 @@ const Form = () => {
         name="select"
         type="select"
         label="Select"
-        selectOptions={[
+        listOptions={[
           { value: "chocolate", label: "Chocolate" },
           { value: "strawberry", label: "Strawberry" },
           { value: "vanilla", label: "Vanilla" },
@@ -120,9 +110,9 @@ const Form = () => {
       <Input
         control={control}
         name="multi_select"
-        type="selects"
+        type="multi-select"
         label="Multi Select"
-        selectOptions={[
+        listOptions={[
           { value: "chocolate", label: "Chocolate" },
           { value: "strawberry", label: "Strawberry" },
           { value: "vanilla", label: "Vanilla" },
@@ -136,7 +126,16 @@ const Form = () => {
         label="Text Editor"
       />
 
-      {/* <Input control={control} type="webcam" name="webcam" label="Webcam"/> */}
+      <Input control={control} name="cover" type="file" label="Cover" />
+      
+      <Input
+        control={control}
+        name="gallery"
+        type="multi-file"
+        label="Gallery"
+      />
+
+      {/* <Input control={control} type="webcam" name="webcam" label="Webcam" /> */}
 
       <input type="submit" className="btn btn-primary app-btn" />
     </form>

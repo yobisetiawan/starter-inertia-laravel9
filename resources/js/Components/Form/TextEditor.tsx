@@ -1,28 +1,46 @@
 import React from "react"
-import { convertToRaw } from "draft-js"
 import { Editor } from "react-draft-wysiwyg"
-import draftToHtml from "draftjs-to-html"
-import htmlToDraft from "html-to-draftjs"
+import { ControllerRenderProps, FieldValues } from "react-hook-form"
 
 interface Props {
-  onChange: (e: any) => void
-  editorState: any
+  is_invalid?: string
+  type: "textarea" | "texteditor"
+  placeholder?: string
+  rows?: number
+  field: ControllerRenderProps<FieldValues, string>
 }
 
-const TextEditor = ({ onChange, editorState }: Props) => {
+const TextEditor = ({ is_invalid, type, placeholder, rows, field }: Props) => {
+  if (type === "textarea") {
+    return (
+      <textarea
+        className={`app-form-control form-control font-bold ${
+          is_invalid ? "is-invalid" : ""
+        }`}
+        rows={rows}
+        placeholder={placeholder}
+        {...field}
+      />
+    )
+  }
+
   return (
     <div>
       <Editor
         wrapperClassName="app-wrapper-editor"
         editorClassName="app-editor"
         toolbarClassName="app-toolbar-editor"
-        editorState={editorState}
-        onEditorStateChange={onChange}
+        editorState={field.value}
+        onEditorStateChange={(e: any) => {
+          field.onChange(e)
+        }}
       />
     </div>
   )
 }
 
-TextEditor.defaultProps = {}
+TextEditor.defaultProps = {
+  rows: 5,
+}
 
 export default TextEditor

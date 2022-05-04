@@ -16,7 +16,7 @@ const Page = () => {
   const onSubmit = (data: any) => {
     Inertia.post(route("web.profile.password.store"), data, {
       preserveState: true,
-      onSuccess: (page) => {
+      onSuccess: (_page) => {
         reset()
       },
     })
@@ -34,18 +34,21 @@ const Page = () => {
             name="old_password"
             type="password"
             label="Old Password"
+            placeholder="Old Password"
           />
           <Input
             control={control}
             name="password"
             type="password"
             label="Password"
+            placeholder="Password"
           />
           <Input
             control={control}
             name="password_confirmation"
             type="password"
             label="Password Confirmation"
+            placeholder="Password Confirmation"
           />
 
           <input type="submit" className="btn btn-primary app-btn" />
