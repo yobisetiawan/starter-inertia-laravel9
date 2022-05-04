@@ -1,4 +1,5 @@
 import { Inertia } from "@inertiajs/inertia"
+import { EditorState } from "draft-js"
 import React from "react"
 import { useForm } from "react-hook-form"
 import { Input } from "../../../Components"
@@ -19,7 +20,7 @@ const Form = () => {
       datepicker: "",
       selec: "",
       multi_select: [],
-      texteditor: "",
+      texteditor: EditorState.createEmpty(),
     },
   })
 
@@ -65,7 +66,10 @@ const Form = () => {
         labelCheckbox="Yes I agree"
       />
 
-      <div className="d-flex">
+      <div className=" mb-3">
+        <div>
+          <label className="form-label">Gender</label>
+        </div>
         <Input
           control={control}
           name="gender"
@@ -86,11 +90,11 @@ const Form = () => {
 
       <Input
         control={control}
+        label="Multi Checkboxs"
         name="check_point"
         type="checkboxes"
         optionsCheck={["1", "2", "3"]}
         labelsCheck={["satu", "dua", "tiga"]}
-        classGroup="d-flex"
       />
 
       <Input

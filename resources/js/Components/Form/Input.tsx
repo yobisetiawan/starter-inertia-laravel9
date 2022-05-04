@@ -5,7 +5,8 @@ import { Controller } from "react-hook-form"
 import Webcam from "react-webcam"
 import Select from "react-select"
 import TextEditor from "./TextEditor"
-import { EditorState } from "draft-js"
+import ErrorValidation from "./ErrorValidation"
+import SearchAbleSelect from "./SearchAbleSelect"
 
 interface Props {
   control: any
@@ -62,7 +63,11 @@ const Input = ({
 
   return (
     <div className={classGroup ? classGroup : "mb-3"}>
-      {label && <label className="form-label">{label}</label>}
+      {label && (
+        <div>
+          <label className="form-label">{label}</label>
+        </div>
+      )}
       {type === "webcam" && (
         <div>
           <Webcam audio={false} ref={webcamRef} screenshotFormat="image/jpeg" />
@@ -125,7 +130,7 @@ const Input = ({
             )
           } else if (type === "checkbox") {
             return (
-              <div className="app-form-check form-check mb-5 d-flex align-items-center">
+              <div className="app-form-check form-check d-flex align-items-center">
                 <input
                   className="form-check-input"
                   type="checkbox"
@@ -135,7 +140,7 @@ const Input = ({
                 />
                 {labelCheckbox && (
                   <label
-                    className="form-check-label ms-2 color-success font-bold"
+                    className="form-check-label ms-2 font-bold"
                     htmlFor={`check-${name}-val-${checkboxIntial}`}
                   >
                     {labelCheckbox}
@@ -148,7 +153,7 @@ const Input = ({
               <>
                 {optionsCheck.map((x, i) => (
                   <div
-                    className="app-form-check form-check mb-5 me-3 d-flex align-items-center"
+                    className="app-form-check form-check  me-3 d-flex align-items-center"
                     key={i}
                   >
                     <input
@@ -175,7 +180,7 @@ const Input = ({
                     />
                     {labelsCheck[i] && (
                       <label
-                        className="form-check-label ms-2 color-success font-bold"
+                        className="form-check-label ms-2 font-bold"
                         htmlFor={`check-${name}-val-${x}`}
                       >
                         {labelsCheck[i]}
@@ -187,7 +192,7 @@ const Input = ({
             )
           } else if (type === "radio") {
             return (
-              <div className="app-form-radio form-radio mb-5 d-flex align-items-center">
+              <div className="app-form-radio form-radio   d-flex align-items-center">
                 <input
                   className="form-check-input"
                   type="radio"
@@ -197,7 +202,7 @@ const Input = ({
                 />
                 {labelRadio && (
                   <label
-                    className="form-check-label ms-2 color-success font-bold"
+                    className="form-check-label ms-2 font-bold"
                     htmlFor={`radio-${name}-val-${radioIntial}`}
                   >
                     {labelRadio}
@@ -216,46 +221,19 @@ const Input = ({
                 {...field}
               />
             )
-          } else if (type === "select") {
+          } else if (type === "select" || type === "selects") {
             return (
-              <Select
-                options={selectOptions}
-                {...field}
-                value={selectOptions.find((x) => x.value == field.value)}
-                onChange={(e: any) => {
-                  field.onChange(e.value)
-                }}
-              />
-            )
-          } else if (type === "selects") {
-            return (
-              <Select
-                options={selectOptions}
-                {...field}
-                value={selectOptions.map((x) => {
-                  if (field.value.includes(x.value)) {
-                    return x
-                  }
-                })}
-                onChange={(e: any) => {
-                  let selected = [] as any
-                  e.forEach((el: any) => {
-                    selected.push(el.value)
-                  })
-                  field.onChange(selected)
-                }}
-                isMulti
+              <SearchAbleSelect
+                field={field}
+                placeholder={placeholder}
+                selectOptions={selectOptions}
+                type={type}
               />
             )
           } else if (type === "texteditor") {
-            let eState = field.value
-            if (field.value == "") {
-              eState = EditorState.createEmpty()
-            }
-
             return (
               <TextEditor
-                editorState={eState}
+                editorState={field.value}
                 onChange={(e: any) => {
                   field.onChange(e)
                 }}
@@ -275,11 +253,7 @@ const Input = ({
           }
         }}
       />
-      {errors[name] && (
-        <span className="app-invalid-feedback invalid-feedback" role="alert">
-          <strong>{errors[name]}</strong>
-        </span>
-      )}
+      <ErrorValidation name={name} />
     </div>
   )
 }
