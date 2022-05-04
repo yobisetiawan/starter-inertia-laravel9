@@ -36,6 +36,7 @@ interface Props {
   value?: string
   formatDate?: string
   listOptions: Array<any>
+  disabled?: boolean
 }
 
 const Input = ({
@@ -47,10 +48,10 @@ const Input = ({
   rows,
   labelCheckbox,
   classGroup,
-
   value,
   formatDate,
   listOptions,
+  disabled,
 }: Props) => {
   const { errors } = usePage().props as any
 
@@ -68,7 +69,12 @@ const Input = ({
         render={({ field }) => {
           if (type === "file" || type === "webcam" || type === "multi-file") {
             return (
-              <FilePicker field={field} is_invalid={errors[name]} type={type} />
+              <FilePicker
+                field={field}
+                is_invalid={errors[name]}
+                type={type}
+                disabled={disabled}
+              />
             )
           } else if (
             type === "checkbox" ||
@@ -83,6 +89,7 @@ const Input = ({
                 label={labelCheckbox}
                 type={type}
                 listOptions={listOptions}
+                disabled={disabled}
               />
             )
           } else if (type === "datepicker") {
@@ -92,6 +99,7 @@ const Input = ({
                 placeholder={placeholder}
                 formatDate={formatDate}
                 is_invalid={errors[name]}
+                disabled={disabled}
               />
             )
           } else if (type === "select" || type === "multi-select") {
@@ -101,6 +109,7 @@ const Input = ({
                 placeholder={placeholder}
                 listOptions={listOptions}
                 type={type}
+                disabled={disabled}
               />
             )
           } else if (type === "texteditor" || type === "textarea") {
@@ -110,6 +119,7 @@ const Input = ({
                 rows={rows}
                 type={type}
                 placeholder={placeholder}
+                disabled={disabled}
               />
             )
           } else {
@@ -121,6 +131,7 @@ const Input = ({
                 placeholder={placeholder}
                 type={type}
                 {...field}
+                disabled={disabled}
               />
             )
           }
@@ -136,6 +147,7 @@ Input.defaultProps = {
   placeholder: "",
   rows: 5,
   listOptions: [],
+  disabled: false,
 }
 
 export default memo(Input)

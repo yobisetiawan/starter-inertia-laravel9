@@ -8,9 +8,18 @@ interface Props {
   name: string
   type: "checkbox" | "multi-checkbox" | "radio"
   listOptions: Array<any>
+  disabled?: boolean
 }
 
-const Checkbox = ({ field, label, value, name, type, listOptions }: Props) => {
+const Checkbox = ({
+  field,
+  label,
+  value,
+  name,
+  type,
+  listOptions,
+  disabled,
+}: Props) => {
   if (type === "multi-checkbox") {
     return (
       <>
@@ -39,6 +48,7 @@ const Checkbox = ({ field, label, value, name, type, listOptions }: Props) => {
               }}
               value={x.value}
               name={name}
+              disabled={disabled}
               id={`check__${name}__val-${x.value}`}
             />
             {x.label && (
@@ -70,6 +80,7 @@ const Checkbox = ({ field, label, value, name, type, listOptions }: Props) => {
               value={x.value}
               name={name}
               id={`radio__${name}-val__${x.value}`}
+              disabled={disabled}
             />
             {x.label && (
               <label
@@ -92,6 +103,7 @@ const Checkbox = ({ field, label, value, name, type, listOptions }: Props) => {
         {...field}
         value={value}
         id={`check__${name}-val__${value}`}
+        disabled={disabled}
       />
       {label && (
         <label
@@ -107,6 +119,7 @@ const Checkbox = ({ field, label, value, name, type, listOptions }: Props) => {
 
 Checkbox.defaultProps = {
   listOptions: [],
+  disabled: false,
 }
 
 export default memo(Checkbox)

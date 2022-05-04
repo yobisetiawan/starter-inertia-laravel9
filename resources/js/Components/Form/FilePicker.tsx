@@ -6,9 +6,10 @@ interface Props {
   is_invalid?: string
   field: ControllerRenderProps<FieldValues, string>
   type?: "file" | "webcam" | "multi-file"
+  disabled?: boolean
 }
 
-const FilePicker = ({ is_invalid, field, type }: Props) => {
+const FilePicker = ({ is_invalid, field, type, disabled }: Props) => {
   const webcamRef = useRef(null) as any
 
   if (type === "webcam") {
@@ -26,6 +27,7 @@ const FilePicker = ({ is_invalid, field, type }: Props) => {
               field.onChange(webcamRef?.current?.getScreenshot())
             }
           }}
+          disabled={disabled}
         >
           Capture
         </button>
@@ -58,10 +60,13 @@ const FilePicker = ({ is_invalid, field, type }: Props) => {
           field.onChange([])
         }
       }}
+      disabled={disabled}
     />
   )
 }
 
-FilePicker.defaultProps = {}
+FilePicker.defaultProps = {
+  disabled: false,
+}
 
 export default memo(FilePicker)

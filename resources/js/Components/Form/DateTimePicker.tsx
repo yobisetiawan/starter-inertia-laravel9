@@ -7,6 +7,7 @@ interface Props {
   field: ControllerRenderProps<FieldValues, string>
   placeholder?: string
   formatDate?: string
+  disabled?: boolean
 }
 
 const DateTimePicker = ({
@@ -14,6 +15,7 @@ const DateTimePicker = ({
   field,
   placeholder,
   formatDate,
+  disabled,
 }: Props) => {
   return (
     <div className="app-datetime-picker">
@@ -25,6 +27,7 @@ const DateTimePicker = ({
         placeholderText={placeholder}
         {...field}
         selected={field.value}
+        disabled={disabled}
       />
     </div>
   )
@@ -32,6 +35,7 @@ const DateTimePicker = ({
 
 DateTimePicker.defaultProps = {
   formatDate: "yyyy-MM-dd",
+  disabled: false,
 }
 
 export default memo(DateTimePicker)

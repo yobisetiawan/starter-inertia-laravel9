@@ -8,9 +8,17 @@ interface Props {
   placeholder?: string
   rows?: number
   field: ControllerRenderProps<FieldValues, string>
+  disabled?: boolean
 }
 
-const TextEditor = ({ is_invalid, type, placeholder, rows, field }: Props) => {
+const TextEditor = ({
+  is_invalid,
+  type,
+  placeholder,
+  rows,
+  field,
+  disabled,
+}: Props) => {
   if (type === "textarea") {
     return (
       <textarea
@@ -20,6 +28,7 @@ const TextEditor = ({ is_invalid, type, placeholder, rows, field }: Props) => {
         rows={rows}
         placeholder={placeholder}
         {...field}
+        disabled={disabled}
       />
     )
   }
@@ -34,6 +43,7 @@ const TextEditor = ({ is_invalid, type, placeholder, rows, field }: Props) => {
         onEditorStateChange={(e: any) => {
           field.onChange(e)
         }}
+        readOnly={disabled}
       />
     </div>
   )
@@ -41,6 +51,7 @@ const TextEditor = ({ is_invalid, type, placeholder, rows, field }: Props) => {
 
 TextEditor.defaultProps = {
   rows: 5,
+  disabled: false,
 }
 
 export default TextEditor
