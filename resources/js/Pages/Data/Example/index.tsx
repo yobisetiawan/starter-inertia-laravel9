@@ -1,7 +1,7 @@
 import { Link } from "@inertiajs/inertia-react"
 import React, { useState } from "react"
 import { App, Layout, Table } from "../../../Components"
-import { route } from "../../../Helper"
+import { route, table } from "../../../Helper"
 
 interface Props {
   list: any
@@ -22,17 +22,6 @@ const Page = ({ list }: Props) => {
 
   let listDt = list?.data || []
 
-  const _handleColumnHide = (e: any) => {
-    let field = e.target.value
-    let cCh = [...ch]
-    cCh.forEach((el) => {
-      if (el.field == field) {
-        el.show = !el.show
-      }
-    })
-    sch(cCh)
-  }
-
   return (
     <Layout>
       <div className="app-content-wrap p-4">
@@ -50,7 +39,10 @@ const Page = ({ list }: Props) => {
         </p>
 
         <div className="position-relative">
-          <Table.DropdownColumn listColumn={ch} onChange={_handleColumnHide} />
+          <Table.DropdownColumn
+            listColumn={ch}
+            onChange={(e) => table.onColumnShowHide(e, ch, sch)}
+          />
 
           <table className="table table-borderless">
             <thead>
