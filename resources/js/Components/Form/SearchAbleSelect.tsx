@@ -17,11 +17,11 @@ const SearchAbleSelect = ({
   type,
   placeholder,
   disabled,
-  is_invalid
+  is_invalid,
 }: Props) => {
   if (type === "multi-select") {
     return (
-      <div className={`app-select ${is_invalid ? 'is-invalid' : ''}`}>
+      <div className={`app-select ${is_invalid ? "is-invalid" : ""}`}>
         <Select
           classNamePrefix="app-searchable-select"
           options={listOptions}
@@ -45,16 +45,17 @@ const SearchAbleSelect = ({
     )
   }
   return (
-    <div className={`app-select ${is_invalid ? 'is-invalid' : ''}`}>
+    <div className={`app-select ${is_invalid ? "is-invalid" : ""}`}>
       <Select
         classNamePrefix="app-searchable-select"
         options={listOptions}
         placeholder={placeholder || "Select"}
         value={listOptions.find((x) => x.value == field.value)}
         onChange={(e: any) => {
-          field.onChange(e.value)
+          field.onChange(e?.value || "")
         }}
         isDisabled={disabled}
+        isClearable
       />
     </div>
   )

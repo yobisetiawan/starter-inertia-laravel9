@@ -15,8 +15,18 @@ class ExampleController extends BaseInertiaCrud
     public $storeValidator = ExampleRequest::class;
     public $updateValidator = ExampleRequest::class;
 
+    public $searchAble = ['title', 'description'];
+
 
     public $viewPath = 'Data/Example';
+
+    public function __prepareQueryList($query)
+    {
+        if ($gender = request('gender')) {
+            $query->where('gender', $gender);
+        }
+        return $query;
+    }
 
 
     public function __prepareDataStore($data)

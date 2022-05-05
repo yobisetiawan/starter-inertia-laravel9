@@ -12,6 +12,18 @@ interface Props {
 const ColumnSort = ({ field, title, routeName }: Props) => {
   const { params } = usePage().props as any
 
+  const mergeRoute = (def: any) => {
+    if (params) {
+      let nParams = { ...params }
+      Object.keys(def).forEach((key) => {
+        nParams[key] = def[key]
+      })
+      return nParams
+    }
+
+    return def
+  }
+
   return (
     <div className="d-flex align-items-center">
       <div className="flex-fill">{title}</div>
@@ -21,7 +33,13 @@ const ColumnSort = ({ field, title, routeName }: Props) => {
             <IoIosArrowRoundUp />
           </div>
         ) : (
-          <Link href={route(routeName, { sort_by: "asc", order_by: field })}>
+          <Link
+            href={route(
+              routeName,
+              mergeRoute({ sort_by: "asc", order_by: field })
+            )}
+            preserveState
+          >
             <IoIosArrowRoundUp />
           </Link>
         )}
@@ -30,7 +48,13 @@ const ColumnSort = ({ field, title, routeName }: Props) => {
             <IoIosArrowRoundDown />
           </div>
         ) : (
-          <Link href={route(routeName, { sort_by: "desc", order_by: field })}>
+          <Link
+            href={route(
+              routeName,
+              mergeRoute({ sort_by: "desc", order_by: field })
+            )}
+            preserveState
+          >
             <IoIosArrowRoundDown />
           </Link>
         )}

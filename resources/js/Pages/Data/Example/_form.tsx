@@ -38,7 +38,6 @@ const _form = () => {
       finalDt.texteditor.getCurrentContent()
     )
 
-    console.log(finalDt)
     if (row) {
       Inertia.put(route("web.data.example.update", { id: row.uuid }), finalDt)
     } else {

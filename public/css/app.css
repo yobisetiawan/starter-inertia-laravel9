@@ -12289,7 +12289,7 @@ textarea.form-control-lg {
   font-weight: bold;
 }
 .app-btn.btn-primary, .app-btn.btn-success, .app-btn.btn-secondary {
-  color: #fff;
+  color: #fff !important;
 }
 .app-btn.btn-secondary {
   color: #f79420;
@@ -12623,6 +12623,7 @@ textarea.form-control-lg {
 .dropdown-toggle::after {
   border: 0;
   background: url("/images/icons/arr-down.png") no-repeat center;
+  background-size: 80%;
   width: 13px;
   height: 9px;
   position: relative;

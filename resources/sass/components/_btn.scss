@@ -4,7 +4,7 @@
   &.btn-primary,
   &.btn-success,
   &.btn-secondary {
-    color: $white;
+    color: $white !important;
   }
 
   &.btn-secondary {

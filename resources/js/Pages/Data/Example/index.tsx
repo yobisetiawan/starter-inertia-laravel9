@@ -1,6 +1,9 @@
+import { Inertia } from "@inertiajs/inertia"
 import { Link } from "@inertiajs/inertia-react"
 import React, { useState } from "react"
-import { App, Layout, Table } from "../../../Components"
+import { Dropdown } from "react-bootstrap"
+import { useForm } from "react-hook-form"
+import { App, Input, Layout, Table } from "../../../Components"
 import { route, table } from "../../../Helper"
 
 interface Props {
@@ -8,6 +11,13 @@ interface Props {
 }
 
 const Page = ({ list }: Props) => {
+  const { control, handleSubmit } = useForm({
+    defaultValues: {
+      q: "",
+      gender: "",
+    },
+  })
+
   const [ch, sch] = useState([
     { field: "id", title: "ID", show: true },
     { field: "title", title: "Title", show: true },
@@ -18,9 +28,13 @@ const Page = ({ list }: Props) => {
     { field: "number", title: "Number", show: true },
   ])
 
-  let base_route = "web.data.example"
+  let baseRoute = "web.data.example"
 
   let listDt = list?.data || []
+
+  const onSubmit = (data: any) => {
+    Inertia.get(route(baseRoute + ".index"), data, { preserveState: true })
+  }
 
   return (
     <Layout>
@@ -29,14 +43,41 @@ const Page = ({ list }: Props) => {
 
         <h1>Example</h1>
 
-        <p>
+        <div className="d-flex justify-content-between mb-4">
           <Link
             href={route("web.data.example.create")}
             className="app-btn btn btn-primary "
           >
             + Create
           </Link>
-        </p>
+          <Dropdown autoClose="outside">
+            <Dropdown.Toggle variant="success" className="app-btn">
+              <span className="me-2">Filter</span>
+            </Dropdown.Toggle>
+
+            <Dropdown.Menu align="end" style={{ minWidth: 280 }}>
+              <div className="p-3">
+                <form onSubmit={handleSubmit(onSubmit)}>
+                  <Input name="q" control={control} placeholder="Search" />
+                  <Input
+                    control={control}
+                    name="gender"
+                    type="select"
+                    placeholder="Gender"
+                    listOptions={[
+                      { value: "F", label: "Female" },
+                      { value: "M", label: "Male" },
+                    ]}
+                  />
+
+                  <button type="submit" className="btn app-btn btn-primary btn-sm">
+                    Filter
+                  </button>
+                </form>
+              </div>
+            </Dropdown.Menu>
+          </Dropdown>
+        </div>
 
         <div className="position-relative">
           <Table.DropdownColumn
@@ -56,7 +97,7 @@ const Page = ({ list }: Props) => {
                       <Table.ColumnSort
                         title={c.title}
                         field={c.field}
-                        routeName={base_route + ".index"}
+                        routeName={baseRoute + ".index"}
                       />
                     </th>
                   )
@@ -71,7 +112,7 @@ const Page = ({ list }: Props) => {
                     <Link
                       as="button"
                       className="btn btn-link btn-sm ps-0"
-                      href={route(base_route + ".edit", { id: x.uuid })}
+                      href={route(baseRoute + ".edit", { id: x.uuid })}
                     >
                       Edit
                     </Link>
@@ -79,7 +120,7 @@ const Page = ({ list }: Props) => {
                       method="DELETE"
                       as="button"
                       className="btn btn-link btn-sm"
-                      href={route(base_route + ".destroy", { id: x.uuid })}
+                      href={route(baseRoute + ".destroy", { id: x.uuid })}
                       only={["list", "flash"]}
                       onBefore={() => confirm("Are You Sure?")}
                     >
