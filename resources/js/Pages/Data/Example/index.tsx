@@ -1,8 +1,7 @@
 import { Link } from "@inertiajs/inertia-react"
 import React, { useState } from "react"
-import { Dropdown } from "react-bootstrap"
-import { App, Form, Layout, Table } from "../../../Components"
-import { route, table } from "../../../Helper"
+import { App, Layout, Table } from "../../../Components"
+import { route } from "../../../Helper"
 
 interface Props {
   list: any
@@ -49,31 +48,9 @@ const Page = ({ list }: Props) => {
             + Create
           </Link>
         </p>
-        <div className="position-relative">
-          <div
-            className="position-absolute"
-            style={{ right: 0, top: 0, zIndex: 10 }}
-          >
-            <Dropdown autoClose="outside">
-              <Dropdown.Toggle variant="success" size="sm"></Dropdown.Toggle>
 
-              <Dropdown.Menu align="end">
-                <div className="px-2">
-                  <div className="text-muted">Show Column</div>
-                  {ch.map((c, i) => (
-                    <div key={i}>
-                      <Form.BaseCheckbox
-                        onChange={_handleColumnHide}
-                        value={c.field}
-                        label={c.title}
-                        checked={c.show}
-                      />
-                    </div>
-                  ))}
-                </div>
-              </Dropdown.Menu>
-            </Dropdown>
-          </div>
+        <div className="position-relative">
+          <Table.DropdownColumn listColumn={ch} onChange={_handleColumnHide} />
 
           <table className="table table-borderless">
             <thead>
@@ -92,11 +69,9 @@ const Page = ({ list }: Props) => {
                     </th>
                   )
                 })}
-
                 <th style={{ width: 120 }}>Action</th>
               </tr>
             </thead>
-
             <tbody>
               {listDt.map((x: any) => {
                 const _actions = (
@@ -134,11 +109,7 @@ const Page = ({ list }: Props) => {
                 )
               })}
 
-              {listDt.length === 0 && (
-                <tr>
-                  <td colSpan={50}>No Data</td>
-                </tr>
-              )}
+              <Table.NoData list={listDt} />
             </tbody>
           </table>
         </div>
