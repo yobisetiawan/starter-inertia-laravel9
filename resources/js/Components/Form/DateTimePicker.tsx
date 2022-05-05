@@ -1,6 +1,7 @@
 import React, { memo } from "react"
 import { ControllerRenderProps, FieldValues } from "react-hook-form"
 import DatePicker from "react-datepicker"
+import { IoIosCalendar } from "react-icons/io"
 
 interface Props {
   is_invalid?: string
@@ -18,7 +19,7 @@ const DateTimePicker = ({
   disabled,
 }: Props) => {
   return (
-    <div className="app-datetime-picker">
+    <div className="position-relative app-datetime-picker">
       <DatePicker
         dateFormat={formatDate}
         className={`app-form-control form-control font-bold ${
@@ -29,6 +30,9 @@ const DateTimePicker = ({
         selected={field.value}
         disabled={disabled}
       />
+      <div className="app-input-right-icon">
+        <IoIosCalendar />
+      </div>
     </div>
   )
 }

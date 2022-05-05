@@ -141,6 +141,8 @@ const _form = () => {
         label="Text Editor"
       />
 
+      <Input control={control} type="webcam" name="webcam" label="Webcam" />
+
       <Input control={control} name="file" type="file" label="File" />
 
       <Input
@@ -149,8 +151,6 @@ const _form = () => {
         type="multi-file"
         label="Multi Files"
       />
-
-      {/* <Input control={control} type="webcam" name="webcam" label="Webcam" /> */}
 
       <input type="submit" className="btn btn-primary app-btn" />
     </form>

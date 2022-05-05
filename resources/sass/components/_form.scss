@@ -86,3 +86,25 @@
     left: -15px !important;
   }
 }
+
+.app-input-right-icon {
+  background: $white;
+  position: absolute;
+  right: 1px;
+  top: 1px;
+  bottom: 1px;
+  z-index: 20;
+  display: flex;
+  padding-right: 10px;
+  padding-left: 10px;
+  align-items: center;
+  width: rem-size(50);
+  justify-content: center;
+  border-radius: 0 $input-border-radius $input-border-radius 0;
+  &,
+  a {
+    font-size: rem-size(20);
+    color: $body-color;
+    text-decoration: none;
+  }
+}

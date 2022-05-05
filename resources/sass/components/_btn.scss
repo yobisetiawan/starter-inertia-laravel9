@@ -20,22 +20,5 @@
     }
   }
 }
-    
-.app-btn-toggle-password {
-  background: $white;
-  position: absolute;
-  right: 1px;
-  top: 1px;
-  bottom: 1px;
-  z-index: 20;
-  display: flex;
-  padding-right: 10px;
-  padding-left: 10px;
-  align-items: center;
-  border-radius: 0 8px 8px 0;
-  &.active {
-    svg {
-      opacity: 0.5;
-    }
-  }
-}
+
+ 

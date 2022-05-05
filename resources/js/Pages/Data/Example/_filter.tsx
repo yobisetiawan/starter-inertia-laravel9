@@ -30,7 +30,7 @@ const _filter = ({ baseRoute }: Props) => {
       <Dropdown.Menu align="end" style={{ minWidth: 280 }}>
         <div className="p-3">
           <form onSubmit={handleSubmit(onSubmit)}>
-            <Input name="q" control={control} placeholder="Search" />
+            <Input name="q" control={control} placeholder="Search" type="search"/>
             <Input
               control={control}
               name="gender"

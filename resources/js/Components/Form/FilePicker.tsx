@@ -15,8 +15,19 @@ const FilePicker = ({ is_invalid, field, type, disabled }: Props) => {
   if (type === "webcam") {
     return (
       <>
-        <div>
-          <Webcam audio={false} ref={webcamRef} screenshotFormat="image/jpeg" />
+        <div className="d-flex mb-2">
+          <Webcam
+            audio={false}
+            ref={webcamRef}
+            screenshotFormat="image/jpeg"
+            className="me-3"
+          />
+
+          {field.value && (
+            <div className="my-3">
+              <img src={field.value} />
+            </div>
+          )}
         </div>
         <input type="hidden" {...field} />
         <button
@@ -31,12 +42,6 @@ const FilePicker = ({ is_invalid, field, type, disabled }: Props) => {
         >
           Capture
         </button>
-
-        {field.value && (
-          <div className="my-3">
-            <img src={field.value} />
-          </div>
-        )}
       </>
     )
   }
