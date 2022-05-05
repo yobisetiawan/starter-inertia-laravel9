@@ -21,6 +21,23 @@ use App\Http\Controllers\Web\Profile\ProfileController;
 |
 */
 
+function webResource($name, $cls, $names = null, $only = null)
+{
+    $route = Route::resource($name, $cls);
+
+    $route->parameters([$name => 'id']);
+
+    if ($names) {
+        $route->names('web.' . $names);
+    }
+
+    if ($only) {
+        $route->only($only);
+    }
+
+    return $route;
+}
+
 Route::namespace('App\Http\Controllers\Web')
     ->group(
         function () {
@@ -34,27 +51,13 @@ Route::namespace('App\Http\Controllers\Web')
                 Route::get('dashboard', [HomeController::class, 'index'])->name('web.dashboard');
 
                 Route::prefix('user')->group(function () {
-
-                    Route::resource('profile', ProfileController::class, [
-                        'names' => 'web.profile',
-                        'only' => ['index', 'store']
-                    ]);
-
-                    Route::resource('change-password', ChangePasswordController::class, [
-                        'names' => 'web.profile.password',
-                        'only' => ['index', 'store']
-                    ]);
-
-                    Route::resource('change-avatar', ChangeAvatarController::class, [
-                        'names' => 'web.profile.avatar',
-                        'only' => ['index', 'store']
-                    ]);
+                    webResource('profile', ProfileController::class, 'profile', ['index', 'store']);
+                    webResource('change-password', ChangePasswordController::class, 'profile.password', ['index', 'store']);
+                    webResource('change-avatar', ChangeAvatarController::class, 'profile.avatar', ['index', 'store']);
                 });
 
                 Route::prefix('data')->group(function () {
-                    Route::resource('examples', ExampleController::class)
-                        ->names('web.data.example')
-                        ->parameters(['examples' => 'id']);
+                    webResource('examples', ExampleController::class, 'data.example');
                 });
             });
         }
