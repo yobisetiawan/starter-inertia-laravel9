@@ -120,6 +120,7 @@ const Input = ({
                 type={type}
                 placeholder={placeholder}
                 disabled={disabled}
+                is_invalid={errors[name]}
               />
             )
           } else {

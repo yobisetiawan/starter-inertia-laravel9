@@ -1,13 +1,15 @@
-import AppLayout from './Layout/AppLayout'
-import Pagination from './Table/Pagination'
-import ColumnSort from './Table/ColumnSort'
-import FlashAlert from './Common/FlashAlert'
+import Layout from './Layout'
+
+import App from './App'
 import Input from './Form/Input'
 
+import Table from './Table'
+
+
+
 export {
-    AppLayout,
-    Pagination,
-    FlashAlert,
-    ColumnSort,
-    Input
+    Layout,
+    App,
+    Input,
+    Table
 }

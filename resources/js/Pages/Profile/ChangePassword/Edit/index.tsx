@@ -1,7 +1,7 @@
 import { Inertia } from "@inertiajs/inertia"
 import React from "react"
 import { useForm } from "react-hook-form"
-import { AppLayout, FlashAlert, Input } from "../../../../Components"
+import { Layout, App, Input } from "../../../../Components"
 import { route } from "../../../../Helper"
 
 const Page = () => {
@@ -23,9 +23,9 @@ const Page = () => {
   }
 
   return (
-    <AppLayout>
+    <Layout>
       <div className="app-content-wrap p-4 ">
-        <FlashAlert />
+        <App.FlashAlert />
         <h1>Change Password</h1>
 
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -54,7 +54,7 @@ const Page = () => {
           <input type="submit" className="btn btn-primary app-btn" />
         </form>
       </div>
-    </AppLayout>
+    </Layout>
   )
 }
 

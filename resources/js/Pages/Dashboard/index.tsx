@@ -1,13 +1,13 @@
 import React from "react"
-import { AppLayout } from "../../Components"
+import { Layout } from "../../Components"
 
 const Page = () => {
   return (
-    <AppLayout>
+    <Layout>
       <div className="app-content-wrap p-4">
         <h1>Dashboard</h1>
       </div>
-    </AppLayout>
+    </Layout>
   )
 }
 

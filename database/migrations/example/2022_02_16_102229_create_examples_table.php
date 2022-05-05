@@ -9,6 +9,8 @@ class CreateExamplesTable extends Migration
 
 	public function up()
 	{
+		 
+
 		Schema::create('examples', function (Blueprint $table) {
 			$table->increments('id');
 			$table->uuid('uuid')->unique();
@@ -18,14 +20,23 @@ class CreateExamplesTable extends Migration
 			$table->string('number')->nullable();
 			 
 			$table->text('description')->nullable();
-			$table->text('rich_text')->nullable();
+			$table->text('texteditor')->nullable();
 
-			$table->boolean('checkbox')->default(false);
-			$table->boolean('switch')->default(false);
+			$table->boolean('is_default')->default(false);
+			$table->boolean('is_accept')->default(false); 
+
+			$table->char('gender')->nullable();  
+			$table->string('multi_check')->nullable();  
 
 			$table->date('date')->nullable();
 			$table->time('time')->nullable();
 			$table->dateTime('datetime')->nullable();
+
+			$table->string('select')->nullable();  
+			$table->string('multi_select')->nullable(); 
+			
+			$table->string('file')->nullable();  
+			$table->string('multi_file')->nullable(); 
 
 			$table->tinyInteger('rating')->default(0)->nullable();
 

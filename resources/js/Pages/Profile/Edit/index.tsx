@@ -2,7 +2,7 @@ import { Inertia } from "@inertiajs/inertia"
 import { Link, usePage } from "@inertiajs/inertia-react"
 import React from "react"
 import { useForm } from "react-hook-form"
-import { AppLayout, FlashAlert, Input } from "../../../Components"
+import { Layout, App, Input } from "../../../Components"
 import { route } from "../../../Helper"
 
 const Page = () => {
@@ -20,9 +20,9 @@ const Page = () => {
   }
 
   return (
-    <AppLayout>
+    <Layout>
       <div className="app-content-wrap p-4 ">
-        <FlashAlert />
+        <App.FlashAlert />
         <h1>Profile</h1>
 
         {auth?.user?.avatar?.url && (
@@ -47,7 +47,7 @@ const Page = () => {
           <Link href={route("web.profile.avatar.index")}>Change Avatar</Link>
         </div>
       </div>
-    </AppLayout>
+    </Layout>
   )
 }
 

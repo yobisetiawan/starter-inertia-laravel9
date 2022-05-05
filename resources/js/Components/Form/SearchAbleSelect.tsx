@@ -59,7 +59,7 @@ const SearchAbleSelect = ({
 }
 
 SearchAbleSelect.defaultProps = {
-  listOptions: []
+  listOptions: [],
   disabled: false
 }
 

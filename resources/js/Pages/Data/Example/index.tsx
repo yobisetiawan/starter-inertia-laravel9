@@ -1,26 +1,148 @@
 import { Link } from "@inertiajs/inertia-react"
-import React from "react"
-import { AppLayout, FlashAlert, Pagination } from "../../../Components"
-import { route } from "../../../Helper"
+import React, { useState } from "react"
+import { Dropdown } from "react-bootstrap"
+import { App, Layout, Table } from "../../../Components"
+import { route, table } from "../../../Helper"
 
 interface Props {
-  list: Array<any>
+  list: any
 }
+
 const Page = ({ list }: Props) => {
+  const [ch, sch] = useState([
+    { field: "id", title: "ID", show: true },
+    { field: "title", title: "Title", show: true },
+    { field: "gender", title: "Gender", show: true },
+    { field: "date", title: "Date", show: true },
+    { field: "is_default", title: "Is Default", show: true },
+    { field: "password", title: "Password", show: true },
+    { field: "number", title: "Number", show: true },
+  ])
+
+  let rn = "web.data.example.index"
+
+  let listDt = list?.data || []
+
+  const _handleColumnHide = (e: any) => {
+    let field = e.target.value
+    let cCh = [...ch]
+    cCh.forEach((el) => {
+      if (el.field == field) {
+        el.show = !el.show
+      }
+    })
+    sch(cCh)
+  }
+
   return (
-    <AppLayout>
+    <Layout>
       <div className="app-content-wrap p-4">
-        <FlashAlert />
+        <App.FlashAlert />
 
         <h1>Example</h1>
 
-        <Link href={route("web.data.example.create")}>Create</Link>
+        <p>
+          <Link
+            href={route("web.data.example.create")}
+            className="app-btn btn btn-primary "
+          >
+           + Create
+          </Link>
+        </p>
+        <div className="position-relative">
+          <div
+            className="position-absolute"
+            style={{ right: 0, top: 0, zIndex: 10 }}
+          >
+            <Dropdown autoClose="outside">
+              <Dropdown.Toggle variant="success" size="sm"></Dropdown.Toggle>
 
-        <table></table>
+              <Dropdown.Menu align="end">
+                <div className="px-2">
+                  <div className="text-muted">Show Column</div>
+                  {ch.map((c, i) => (
+                    <div key={i}>
+                      <div className="app-form-check form-check d-flex align-items-center">
+                        <input
+                          checked={c.show}
+                          className="form-check-input"
+                          type="checkbox"
+                          value={c.field}
+                          onChange={_handleColumnHide}
+                          id={"ch_" + c.field}
+                        />
+                        <label
+                          className="form-check-label ms-2 font-bold"
+                          htmlFor={"ch_" + c.field}
+                        >
+                          {c.title}
+                        </label>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </Dropdown.Menu>
+            </Dropdown>
+          </div>
 
-        <Pagination paginate={list}></Pagination>
+          <table className="table table-borderless">
+            <thead>
+              <tr style={{ borderBottom: "1px solid #ddd" }}>
+                {ch.map((c, i) => {
+                  if (!c.show) {
+                    return <React.Fragment key={i} />
+                  }
+                  return (
+                    <th key={i}>
+                      <Table.ColumnSort
+                        title={c.title}
+                        field={c.field}
+                        routeName={rn}
+                      />
+                    </th>
+                  )
+                })}
+
+                <th style={{ width: 120 }}>Action</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              {listDt.map((x: any) => {
+                const _actions = (
+                  <td>
+                    <a href="#">Edit</a>
+                    <a href="#" className="ms-2">
+                      Delete
+                    </a>
+                  </td>
+                )
+                return (
+                  <tr key={x.id}>
+                    {ch.map((c, ii) => {
+                      if (!c.show) {
+                        return <React.Fragment key={ii} />
+                      }
+                      return <td key={ii}>{x[c.field].toString()}</td>
+                    })}
+
+                    {_actions}
+                  </tr>
+                )
+              })}
+
+              {listDt.length === 0 && (
+                <tr>
+                  <td colSpan={50}>No Data</td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        </div>
+
+        <Table.Pagination paginate={list}></Table.Pagination>
       </div>
-    </AppLayout>
+    </Layout>
   )
 }
 
