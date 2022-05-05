@@ -110,6 +110,7 @@ const Input = ({
                 listOptions={listOptions}
                 type={type}
                 disabled={disabled}
+                is_invalid={errors[name]}
               />
             )
           } else if (type === "texteditor" || type === "textarea") {

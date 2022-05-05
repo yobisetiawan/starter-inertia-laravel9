@@ -14,8 +14,8 @@ const Page = ({ list }: Props) => {
     { field: "title", title: "Title", show: true },
     { field: "gender", title: "Gender", show: true },
     { field: "date", title: "Date", show: true },
-    { field: "is_default", title: "Is Default", show: true },
-    { field: "password", title: "Password", show: true },
+    { field: "is_default", title: "Is Default", show: false },
+    { field: "password", title: "Password", show: false },
     { field: "number", title: "Number", show: true },
   ])
 

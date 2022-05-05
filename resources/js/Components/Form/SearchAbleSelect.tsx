@@ -7,7 +7,8 @@ interface Props {
   field: ControllerRenderProps<FieldValues, string>
   type: "select" | "multi-select"
   placeholder?: string
-  disabled?:boolean
+  disabled?: boolean
+  is_invalid?: string
 }
 
 const SearchAbleSelect = ({
@@ -15,11 +16,12 @@ const SearchAbleSelect = ({
   field,
   type,
   placeholder,
-  disabled
+  disabled,
+  is_invalid
 }: Props) => {
   if (type === "multi-select") {
     return (
-      <div className="app-select">
+      <div className={`app-select ${is_invalid ? 'is-invalid' : ''}`}>
         <Select
           classNamePrefix="app-searchable-select"
           options={listOptions}
@@ -43,7 +45,7 @@ const SearchAbleSelect = ({
     )
   }
   return (
-    <div className="app-select">
+    <div className={`app-select ${is_invalid ? 'is-invalid' : ''}`}>
       <Select
         classNamePrefix="app-searchable-select"
         options={listOptions}
@@ -60,7 +62,7 @@ const SearchAbleSelect = ({
 
 SearchAbleSelect.defaultProps = {
   listOptions: [],
-  disabled: false
+  disabled: false,
 }
 
 export default memo(SearchAbleSelect)

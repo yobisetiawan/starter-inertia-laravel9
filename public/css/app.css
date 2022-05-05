@@ -12603,6 +12603,9 @@ textarea.form-control-lg {
   font-weight: bold;
   color: #6c757d;
 }
+.app-select.is-invalid .app-searchable-select__control {
+  border: 1px solid #dc3545 !important;
+}
 
 .app-datetime-picker .react-datepicker__triangle {
   left: -15px !important;

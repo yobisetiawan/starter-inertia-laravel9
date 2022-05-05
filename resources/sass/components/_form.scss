@@ -71,6 +71,14 @@
       color: $input-placeholder-color;
     }
   }
+
+  &.is-invalid {
+    .app-searchable-select {
+      &__control {
+        border: $input-border-width solid #dc3545 !important;
+      }
+    }
+  }
 }
 
 .app-datetime-picker {
