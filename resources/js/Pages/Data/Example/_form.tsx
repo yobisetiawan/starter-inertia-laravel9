@@ -22,16 +22,16 @@ const _form = () => {
       file: [],
       multi_file: [],
       texteditor: EditorState.createEmpty(),
-      
     },
   })
 
   const onSubmit = (data: any) => {
     let finalDt = { ...data }
 
-    finalDt.texteditor = textEditor.DraftToHtml(finalDt.texteditor.getCurrentContent())
+    finalDt.texteditor = textEditor.DraftToHtml(
+      finalDt.texteditor.getCurrentContent()
+    )
 
-    console.log(finalDt)
     Inertia.post(route("web.data.example.store"), finalDt, {
       preserveState: true,
       forceFormData: true,

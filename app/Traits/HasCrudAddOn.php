@@ -51,20 +51,25 @@ trait HasCrudAddOn
         return $this->__viewShow($data);
     }
 
+    public function __redirectSuccess()
+    {
+        return redirect()->back();
+    }
+
 
     public function __successStore()
     {
-        return redirect()->back()->with('success_message', $this->successStoreMsg);
+        return $this->__redirectSuccess()->with('success_message', $this->successStoreMsg);
     }
 
     public function __successUpdate()
     {
-        return redirect()->back()->with('success_message', $this->successUpdateMsg);
+        return $this->__redirectSuccess()->with('success_message', $this->successUpdateMsg);
     }
 
     public function __successDestroy()
     {
-        return redirect()->back()->with('success_message', $this->successDestroyMsg);
+        return $this->__redirectSuccess()->with('success_message', $this->successDestroyMsg);
     }
 
     public function __prepareQueryListType($query)

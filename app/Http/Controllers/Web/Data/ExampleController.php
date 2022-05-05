@@ -27,4 +27,9 @@ class ExampleController extends BaseInertiaCrud
 
         return $data;
     }
+
+    public function __redirectSuccess()
+    {
+        return redirect()->route('web.data.example.index');
+    }
 }
