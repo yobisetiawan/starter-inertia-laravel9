@@ -18,7 +18,7 @@ const Page = ({ list }: Props) => {
     { field: "number", title: "Number", show: true },
   ])
 
-  let rn = "web.data.example.index"
+  let base_route = "web.data.example"
 
   let listDt = list?.data || []
 
@@ -56,7 +56,7 @@ const Page = ({ list }: Props) => {
                       <Table.ColumnSort
                         title={c.title}
                         field={c.field}
-                        routeName={rn}
+                        routeName={base_route + ".index"}
                       />
                     </th>
                   )
@@ -71,7 +71,7 @@ const Page = ({ list }: Props) => {
                     <Link
                       as="button"
                       className="btn btn-link btn-sm ps-0"
-                      href={route("web.data.example.edit", { id: x.uuid })}
+                      href={route(base_route + ".edit", { id: x.uuid })}
                     >
                       Edit
                     </Link>
@@ -79,7 +79,7 @@ const Page = ({ list }: Props) => {
                       method="DELETE"
                       as="button"
                       className="btn btn-link btn-sm"
-                      href={route("web.data.example.destroy", { id: x.uuid })}
+                      href={route(base_route + ".destroy", { id: x.uuid })}
                       only={["list", "flash"]}
                       onBefore={() => confirm("Are You Sure?")}
                     >
