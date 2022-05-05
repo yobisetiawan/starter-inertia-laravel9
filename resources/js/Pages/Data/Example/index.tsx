@@ -1,23 +1,13 @@
-import { Inertia } from "@inertiajs/inertia"
 import { Link } from "@inertiajs/inertia-react"
 import React, { useState } from "react"
-import { Dropdown } from "react-bootstrap"
-import { useForm } from "react-hook-form"
-import { App, Input, Layout, Table } from "../../../Components"
+import { App, Layout, Table } from "../../../Components"
 import { route, table } from "../../../Helper"
-
+import Filter from "./_filter"
 interface Props {
   list: any
 }
 
 const Page = ({ list }: Props) => {
-  const { control, handleSubmit } = useForm({
-    defaultValues: {
-      q: "",
-      gender: "",
-    },
-  })
-
   const [ch, sch] = useState([
     { field: "id", title: "ID", show: true },
     { field: "title", title: "Title", show: true },
@@ -31,10 +21,6 @@ const Page = ({ list }: Props) => {
   let baseRoute = "web.data.example"
 
   let listDt = list?.data || []
-
-  const onSubmit = (data: any) => {
-    Inertia.get(route(baseRoute + ".index"), data, { preserveState: true })
-  }
 
   return (
     <Layout>
@@ -50,33 +36,8 @@ const Page = ({ list }: Props) => {
           >
             + Create
           </Link>
-          <Dropdown autoClose="outside">
-            <Dropdown.Toggle variant="success" className="app-btn">
-              <span className="me-2">Filter</span>
-            </Dropdown.Toggle>
 
-            <Dropdown.Menu align="end" style={{ minWidth: 280 }}>
-              <div className="p-3">
-                <form onSubmit={handleSubmit(onSubmit)}>
-                  <Input name="q" control={control} placeholder="Search" />
-                  <Input
-                    control={control}
-                    name="gender"
-                    type="select"
-                    placeholder="Gender"
-                    listOptions={[
-                      { value: "F", label: "Female" },
-                      { value: "M", label: "Male" },
-                    ]}
-                  />
-
-                  <button type="submit" className="btn app-btn btn-primary btn-sm">
-                    Filter
-                  </button>
-                </form>
-              </div>
-            </Dropdown.Menu>
-          </Dropdown>
+          <Filter baseRoute={baseRoute} />
         </div>
 
         <div className="position-relative">
