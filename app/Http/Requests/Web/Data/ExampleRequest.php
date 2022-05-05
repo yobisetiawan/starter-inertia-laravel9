@@ -27,6 +27,7 @@ class ExampleRequest extends FormRequest
         return [
             'title' => 'required|max:50',
             'description' => 'required|max:1000',
+            'texteditor' => 'required',
             'number' => 'required|min:1',
             'password' => 'required|min:6',
             'is_default' => 'required|boolean|in:1',
@@ -36,8 +37,8 @@ class ExampleRequest extends FormRequest
             'time' => 'nullable',
             'datetime' => 'nullable',
             'select' => 'required',
-            'multi_select' => 'required|array',
-            'file' => 'required|mimes:jpeg,jpg,png|max:5000',
+            'multi_select' => 'nullable|array',
+            //'file' => 'nullable|mimes:jpeg,jpg,png|max:5000',
            // 'multi_file' => 'required|array',
            // 'multi_file.*' => 'mimes:jpeg,jpg,png|max:5000',
         ];

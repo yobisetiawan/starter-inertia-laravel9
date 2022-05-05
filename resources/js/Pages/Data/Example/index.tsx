@@ -1,7 +1,7 @@
 import { Link } from "@inertiajs/inertia-react"
 import React, { useState } from "react"
 import { Dropdown } from "react-bootstrap"
-import { App, Layout, Table } from "../../../Components"
+import { App, Form, Layout, Table } from "../../../Components"
 import { route, table } from "../../../Helper"
 
 interface Props {
@@ -46,7 +46,7 @@ const Page = ({ list }: Props) => {
             href={route("web.data.example.create")}
             className="app-btn btn btn-primary "
           >
-           + Create
+            + Create
           </Link>
         </p>
         <div className="position-relative">
@@ -62,22 +62,12 @@ const Page = ({ list }: Props) => {
                   <div className="text-muted">Show Column</div>
                   {ch.map((c, i) => (
                     <div key={i}>
-                      <div className="app-form-check form-check d-flex align-items-center">
-                        <input
-                          checked={c.show}
-                          className="form-check-input"
-                          type="checkbox"
-                          value={c.field}
-                          onChange={_handleColumnHide}
-                          id={"ch_" + c.field}
-                        />
-                        <label
-                          className="form-check-label ms-2 font-bold"
-                          htmlFor={"ch_" + c.field}
-                        >
-                          {c.title}
-                        </label>
-                      </div>
+                      <Form.BaseCheckbox
+                        onChange={_handleColumnHide}
+                        value={c.field}
+                        label={c.title}
+                        checked={c.show}
+                      />
                     </div>
                   ))}
                 </div>
@@ -111,10 +101,23 @@ const Page = ({ list }: Props) => {
               {listDt.map((x: any) => {
                 const _actions = (
                   <td>
-                    <a href="#">Edit</a>
-                    <a href="#" className="ms-2">
+                    <Link
+                      as="button"
+                      className="btn btn-link btn-sm ps-0"
+                      href={route("web.data.example.edit", { id: x.uuid })}
+                    >
+                      Edit
+                    </Link>
+                    <Link
+                      method="DELETE"
+                      as="button"
+                      className="btn btn-link btn-sm"
+                      href={route("web.data.example.destroy", { id: x.uuid })}
+                      only={["list", "flash"]}
+                      onBefore={() => confirm("Are You Sure?")}
+                    >
                       Delete
-                    </a>
+                    </Link>
                   </td>
                 )
                 return (

@@ -16,7 +16,9 @@ class Example extends Model
     protected $dates = ['deleted_at'];
 
     protected $casts = [
-        'is_default' => 'boolean'
+        'is_default' => 'boolean',
+        'multi_select' => 'array',
+        'multi_check' => 'array'
     ];
 
     protected $guarded =['id', 'uuid'];

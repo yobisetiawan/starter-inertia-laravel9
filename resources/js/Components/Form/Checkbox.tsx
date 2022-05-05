@@ -48,6 +48,7 @@ const Checkbox = ({
               }}
               value={x.value}
               name={name}
+              checked={field.value.includes(x.value)}
               disabled={disabled}
               id={`check__${name}__val-${x.value}`}
             />
@@ -76,6 +77,7 @@ const Checkbox = ({
             <input
               className="form-check-input"
               type="radio"
+              checked={field.value.includes(x.value)}
               {...field}
               value={x.value}
               name={name}
@@ -104,6 +106,7 @@ const Checkbox = ({
         value={value}
         id={`check__${name}-val__${value}`}
         disabled={disabled}
+        checked={field.value}
       />
       {label && (
         <label

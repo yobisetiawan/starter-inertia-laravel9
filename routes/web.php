@@ -52,7 +52,9 @@ Route::namespace('App\Http\Controllers\Web')
                 });
 
                 Route::prefix('data')->group(function () {
-                    Route::resource('examples', ExampleController::class, ['names' => 'web.data.example']);
+                    Route::resource('examples', ExampleController::class)
+                        ->names('web.data.example')
+                        ->parameters(['examples' => 'id']);
                 });
             });
         }

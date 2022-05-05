@@ -21,11 +21,14 @@ class ExampleController extends BaseInertiaCrud
 
     public function __prepareDataStore($data)
     {
-        $data['multi_select'] = implode(',', $data['multi_select']);
-        $data['multi_check'] = implode(',', $data['multi_check']);
         $data['date'] = Carbon::parse($data['date'])->format('Y-m-d');
 
         return $data;
+    }
+
+    public function __prepareDataUpdate($data)
+    {
+        return $this->__prepareDataStore($data);
     }
 
     public function __redirectSuccess()

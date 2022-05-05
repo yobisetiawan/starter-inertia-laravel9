@@ -4,24 +4,30 @@ import { Input } from "../../../Components"
 import { EditorState } from "draft-js"
 import { Inertia } from "@inertiajs/inertia"
 import { route, textEditor } from "../../../Helper"
+import { usePage } from "@inertiajs/inertia-react"
+import moment from "moment-timezone"
 
 const _form = () => {
+  const { row } = usePage().props as any
+
   const { control, handleSubmit } = useForm({
     defaultValues: {
-      title: "",
-      description: "",
-      number: "",
-      password: "",
+      title: row?.title || "",
+      description: row?.description || "",
+      number: row?.number || "",
+      password: row?.password || "",
       webcam: "",
-      is_default: false,
-      gender: "",
-      multi_check: [],
-      date: "",
-      select: "",
-      multi_select: [],
+      is_default: row?.is_default || false,
+      gender: row?.gender || "",
+      multi_check: row?.multi_check || [],
+      date: row?.date ? moment(row.date).toDate() : "",
+      select: row?.select || "",
+      multi_select: row?.multi_select || [],
       file: [],
       multi_file: [],
-      texteditor: EditorState.createEmpty(),
+      texteditor: row?.texteditor
+        ? textEditor.HtmlToDraft(row?.texteditor)
+        : EditorState.createEmpty(),
     },
   })
 
@@ -32,10 +38,12 @@ const _form = () => {
       finalDt.texteditor.getCurrentContent()
     )
 
-    Inertia.post(route("web.data.example.store"), finalDt, {
-      preserveState: true,
-      forceFormData: true,
-    })
+    console.log(finalDt)
+    if (row) {
+      Inertia.put(route("web.data.example.update", { id: row.uuid }), finalDt)
+    } else {
+      Inertia.post(route("web.data.example.store"), finalDt)
+    }
   }
 
   return (

@@ -16,7 +16,7 @@ const Pagination = ({ paginate }: Props) => {
               x.active && "active"
             }`}
           >
-            <Link href={x.url} className="page-link">
+            <Link href={x.url} className="page-link" preserveState>
               <span dangerouslySetInnerHTML={{ __html: x.label }}></span>
             </Link>
           </li>
