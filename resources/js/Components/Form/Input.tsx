@@ -8,7 +8,7 @@ import SearchAbleSelect from "./SearchAbleSelect"
 import DateTimePicker from "./DateTimePicker"
 import FilePicker from "./FilePicker"
 import Checkbox from "./Checkbox"
-import { IoIosEye, IoIosEyeOff, IoIosSearch, IoMdSearch } from "react-icons/io"
+import { IoIosEye, IoIosEyeOff, IoIosSearch } from "react-icons/io"
 
 interface Props {
   control: any

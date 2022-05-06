@@ -4,8 +4,9 @@ use App\Http\Controllers\Web\Auth\LoginController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\Web\Dashboard\HomeController;
+use App\Http\Controllers\Web\Dashboard\HomeController; 
 use App\Http\Controllers\Web\Data\ExampleController;
+use App\Http\Controllers\Web\Json\ExampleController as JsonExampleController;
 use App\Http\Controllers\Web\Profile\ChangeAvatarController;
 use App\Http\Controllers\Web\Profile\ChangePasswordController;
 use App\Http\Controllers\Web\Profile\ProfileController;
@@ -58,6 +59,10 @@ Route::namespace('App\Http\Controllers\Web')
 
                 Route::prefix('data')->group(function () {
                     webResource('examples', ExampleController::class, 'data.example');
+                });
+
+                Route::prefix('json')->group(function () {
+                    webResource('examples', JsonExampleController::class, 'json.example', ['index']);
                 });
             });
         }

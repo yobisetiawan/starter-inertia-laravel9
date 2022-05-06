@@ -26,11 +26,15 @@ const SearchAbleSelect = ({
           classNamePrefix="app-searchable-select"
           options={listOptions}
           placeholder={placeholder || "Select"}
-          value={listOptions.map((x) => {
-            if (field.value.includes(x.value)) {
-              return x
-            }
-          })}
+          value={
+            field.value
+              ? listOptions.map((x) => {
+                  if (field.value.includes(x.value)) {
+                    return x
+                  }
+                })
+              : null
+          }
           onChange={(e: any) => {
             let selected = [] as any
             e.forEach((el: any) => {
@@ -50,7 +54,9 @@ const SearchAbleSelect = ({
         classNamePrefix="app-searchable-select"
         options={listOptions}
         placeholder={placeholder || "Select"}
-        value={listOptions.find((x) => x.value == field.value)}
+        value={
+          field.value ? listOptions.find((x) => x.value == field.value) : null
+        }
         onChange={(e: any) => {
           field.onChange(e?.value || "")
         }}

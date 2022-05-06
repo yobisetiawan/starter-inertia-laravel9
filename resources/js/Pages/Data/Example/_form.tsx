@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import { useForm } from "react-hook-form"
 import { Input } from "../../../Components"
 import { EditorState } from "draft-js"
@@ -6,11 +6,15 @@ import { Inertia } from "@inertiajs/inertia"
 import { route, textEditor } from "../../../Helper"
 import { usePage } from "@inertiajs/inertia-react"
 import moment from "moment-timezone"
+import axios from "axios"
 
 const _form = () => {
   const { row } = usePage().props as any
 
-  const { control, handleSubmit } = useForm({
+  const [lc2, slc2] = useState([]) as any
+  const [lc3, slc3] = useState([]) as any
+
+  const { control, handleSubmit, watch, setValue } = useForm({
     defaultValues: {
       title: row?.title || "",
       description: row?.description || "",
@@ -23,6 +27,9 @@ const _form = () => {
       date: row?.date ? moment(row.date).toDate() : "",
       select: row?.select || "",
       multi_select: row?.multi_select || [],
+      select_cond1: row?.select_cond1 || "",
+      select_cond2: row?.select_cond2 || "",
+      select_cond3: row?.select_cond3 || "",
       file: [],
       multi_file: [],
       texteditor: row?.texteditor
@@ -30,6 +37,13 @@ const _form = () => {
         : EditorState.createEmpty(),
     },
   })
+
+  const onScrollResetPage = () => {
+    let dpc = document.getElementById("app-form-example-wrap")
+    if (dpc) {
+      dpc.scrollTop = 0
+    }
+  }
 
   const onSubmit = (data: any) => {
     let finalDt = { ...data }
@@ -39,11 +53,57 @@ const _form = () => {
     )
 
     if (row) {
-      Inertia.put(route("web.data.example.update", { id: row.uuid }), finalDt)
+      Inertia.put(route("web.data.example.update", { id: row.uuid }), finalDt, {
+        onError: onScrollResetPage,
+      })
     } else {
-      Inertia.post(route("web.data.example.store"), finalDt)
+      Inertia.post(route("web.data.example.store"), finalDt, {
+        onError: onScrollResetPage,
+      })
     }
   }
+
+  useEffect(() => {
+    const subscription = watch((value, { name, type }) => {
+      if (type == "change") {
+        console.log(value, name, type)
+        if (name === "select_cond1") {
+          setValue("select_cond2", null)
+          setValue("select_cond3", null)
+
+          slc2([])
+          slc3([])
+
+          axios
+            .get(
+              route("web.json.example.index", {
+                start: value.select_cond1,
+                s: "c1",
+              })
+            )
+            .then((ress) => {
+              slc2(ress.data)
+            })
+        }
+        if (name === "select_cond2") {
+          setValue("select_cond3", null)
+          slc3([])
+
+          axios
+            .get(
+              route("web.json.example.index", {
+                start: value.select_cond2,
+                s: "c2",
+              })
+            )
+            .then((ress) => {
+              slc3(ress.data)
+            })
+        }
+      }
+    })
+    return () => subscription.unsubscribe()
+  }, [watch])
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="mb-4">
@@ -132,6 +192,33 @@ const _form = () => {
           { value: "strawberry", label: "Strawberry" },
           { value: "vanilla", label: "Vanilla" },
         ]}
+      />
+
+      <Input
+        control={control}
+        name="select_cond1"
+        type="select"
+        label="Select Conditional 1"
+        listOptions={[
+          { value: "1", label: "Value After 1" },
+          { value: "10", label: "Value After 10" },
+        ]}
+      />
+
+      <Input
+        control={control}
+        name="select_cond2"
+        type="select"
+        label="Select Conditional 2"
+        listOptions={lc2}
+      />
+
+      <Input
+        control={control}
+        name="select_cond3"
+        type="select"
+        label="Select Conditional 3"
+        listOptions={lc3}
       />
 
       <Input
