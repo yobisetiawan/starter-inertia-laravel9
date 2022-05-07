@@ -27,13 +27,16 @@ class CreateExamplesTable extends Migration
 
 			$table->char('gender')->nullable();  
 			$table->string('multi_check')->nullable();  
-
+ 
 			$table->date('date')->nullable();
 			$table->time('time')->nullable();
 			$table->dateTime('datetime')->nullable();
 
 			$table->string('select')->nullable();  
 			$table->string('multi_select')->nullable(); 
+			$table->integer('select_cond1')->nullable(); 
+			$table->integer('select_cond2')->nullable();  
+			$table->integer('select_cond3')->nullable();  
 			
 			$table->string('file')->nullable();  
 			$table->string('multi_file')->nullable(); 

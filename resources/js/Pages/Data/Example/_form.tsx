@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import { useForm } from "react-hook-form"
 import { Input } from "../../../Components"
 import { EditorState } from "draft-js"
@@ -13,6 +13,8 @@ const _form = () => {
 
   const [lc2, slc2] = useState([]) as any
   const [lc3, slc3] = useState([]) as any
+
+  const isFirstLoad = useRef(true)
 
   const { control, handleSubmit, watch, setValue } = useForm({
     defaultValues: {
@@ -63,47 +65,57 @@ const _form = () => {
     }
   }
 
+  const getListData = (v: any) => {
+    return axios.get(
+      route("web.json.example.index", {
+        start: v,
+      })
+    )
+  }
+
   useEffect(() => {
     const subscription = watch((value, { name, type }) => {
       if (type == "change") {
-        console.log(value, name, type)
         if (name === "select_cond1") {
           setValue("select_cond2", null)
           setValue("select_cond3", null)
 
           slc2([])
           slc3([])
-
-          axios
-            .get(
-              route("web.json.example.index", {
-                start: value.select_cond1,
-                s: "c1",
-              })
-            )
-            .then((ress) => {
-              slc2(ress.data)
-            })
+          getListData(value.select_cond1).then((ress) => {
+            slc2(ress.data)
+          })
         }
         if (name === "select_cond2") {
           setValue("select_cond3", null)
           slc3([])
 
-          axios
-            .get(
-              route("web.json.example.index", {
-                start: value.select_cond2,
-                s: "c2",
-              })
-            )
-            .then((ress) => {
-              slc3(ress.data)
-            })
+          getListData(value.select_cond2).then((ress) => {
+            slc3(ress.data)
+          })
         }
       }
     })
     return () => subscription.unsubscribe()
   }, [watch])
+
+  useEffect(() => {
+    if (isFirstLoad.current) {
+      if (row?.select_cond1) {
+        getListData(row?.select_cond1).then((ress) => {
+          slc2(ress.data)
+        })
+      }
+
+      if (row?.select_cond2) {
+        getListData(row?.select_cond2).then((ress) => {
+          slc3(ress.data)
+        })
+      }
+
+      isFirstLoad.current = false
+    }
+  })
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="mb-4">
