@@ -12586,6 +12586,9 @@ textarea.form-control-lg {
   font-weight: bold;
   color: #6c757d;
 }
+.app-select .app-searchable-select__menu {
+  z-index: 200;
+}
 .app-select.is-invalid .app-searchable-select__control {
   border: 1px solid #dc3545 !important;
 }

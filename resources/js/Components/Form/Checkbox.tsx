@@ -39,7 +39,7 @@ const Checkbox = ({
                     valueCopy.push(e.target.value)
                   }
                 } else {
-                  var index = valueCopy.indexOf(e.target.value)
+                  const index = valueCopy.indexOf(e.target.value)
                   if (index !== -1) {
                     valueCopy.splice(index, 1)
                   }

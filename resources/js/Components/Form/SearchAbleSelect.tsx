@@ -36,7 +36,7 @@ const SearchAbleSelect = ({
               : null
           }
           onChange={(e: any) => {
-            let selected = [] as any
+            const selected = [] as any
             e.forEach((el: any) => {
               selected.push(el.value)
             })

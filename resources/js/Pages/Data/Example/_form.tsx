@@ -41,14 +41,14 @@ const _form = () => {
   })
 
   const onScrollResetPage = () => {
-    let dpc = document.getElementById("app-form-example-wrap")
+    const dpc = document.getElementById("app-form-example-wrap")
     if (dpc) {
       dpc.scrollTop = 0
     }
   }
 
   const onSubmit = (data: any) => {
-    let finalDt = { ...data }
+    const finalDt = { ...data }
 
     finalDt.texteditor = textEditor.DraftToHtml(
       finalDt.texteditor.getCurrentContent()
@@ -97,7 +97,7 @@ const _form = () => {
       }
     })
     return () => subscription.unsubscribe()
-  }, [watch])
+  }, [watch, setValue])
 
   useEffect(() => {
     if (isFirstLoad.current) {

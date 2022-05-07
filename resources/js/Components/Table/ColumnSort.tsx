@@ -14,7 +14,7 @@ const ColumnSort = ({ field, title, routeName }: Props) => {
 
   const mergeRoute = (def: any) => {
     if (params) {
-      let nParams = { ...params }
+      const nParams = { ...params }
       Object.keys(def).forEach((key) => {
         nParams[key] = def[key]
       })

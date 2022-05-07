@@ -16,7 +16,7 @@ const Page = () => {
   const onSubmit = (data: any) => {
     Inertia.post(route("web.profile.password.store"), data, {
       preserveState: true,
-      onSuccess: (_page) => {
+      onSuccess: () => {
         reset()
       },
     })

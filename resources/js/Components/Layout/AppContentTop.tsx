@@ -1,10 +1,6 @@
 import { Link } from "@inertiajs/inertia-react"
 import React, { memo } from "react"
 
-// interface Props {
-
-// }
-
 const AppContentTop = () => {
   return (
     <div className="d-flex p-4 align-items-center">

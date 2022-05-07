@@ -1,9 +1,5 @@
 import React, { memo } from "react"
 
-// interface Props {
-
-// }
-
 const Base = () => {
   return <div></div>
 }

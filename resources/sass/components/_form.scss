@@ -70,6 +70,10 @@
       font-weight: bold;
       color: $input-placeholder-color;
     }
+
+    &__menu{
+      z-index: 200;
+    }
   }
 
   &.is-invalid {
