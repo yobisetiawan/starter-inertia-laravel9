@@ -41,9 +41,9 @@ class ExampleRequest extends FormRequest
             'select_cond1' => 'nullable',
             'select_cond2' => 'nullable',
             'select_cond3' => 'nullable',
-            //'file' => 'nullable|mimes:jpeg,jpg,png|max:5000',
-           // 'multi_file' => 'required|array',
-           // 'multi_file.*' => 'mimes:jpeg,jpg,png|max:5000',
+            'file' => 'nullable|mimes:jpeg,jpg,png|max:5000',
+            'multi_file.*' => 'nullable|mimes:jpeg,jpg,png|max:5000',
+            'webcam' => 'nullable'
         ];
     }
 }

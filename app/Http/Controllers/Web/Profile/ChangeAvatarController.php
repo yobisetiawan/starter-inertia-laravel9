@@ -32,7 +32,6 @@ class ChangeAvatarController extends BaseInertiaCrud
     }
 
     public function __beforeUpdate()
-
     {
         $upload = new UploadService(
             $this->requestData->file('avatar'),

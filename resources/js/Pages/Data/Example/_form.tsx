@@ -32,8 +32,8 @@ const _form = () => {
       select_cond1: row?.select_cond1 || "",
       select_cond2: row?.select_cond2 || "",
       select_cond3: row?.select_cond3 || "",
-      file: [],
-      multi_file: [],
+      file: "",
+      multi_file: "",
       texteditor: row?.texteditor
         ? textEditor.HtmlToDraft(row?.texteditor)
         : EditorState.createEmpty(),
@@ -54,13 +54,21 @@ const _form = () => {
       finalDt.texteditor.getCurrentContent()
     )
 
+    console.log(finalDt)
+
     if (row) {
-      Inertia.put(route("web.data.example.update", { id: row.uuid }), finalDt, {
-        onError: onScrollResetPage,
-      })
+      finalDt._method = "put"
+      Inertia.post(
+        route("web.data.example.update", { id: row.uuid }),
+        finalDt,
+        {
+          onError: onScrollResetPage,
+        }
+      )
     } else {
       Inertia.post(route("web.data.example.store"), finalDt, {
         onError: onScrollResetPage,
+        forceFormData: true,
       })
     }
   }
@@ -240,10 +248,27 @@ const _form = () => {
         label="Text Editor"
       />
 
+      {row?.webcam && (
+        <div className="mb-2">
+          <img src={row?.webcam} width={100} alt=""/>
+        </div>
+      )}
       <Input control={control} type="webcam" name="webcam" label="Webcam" />
 
+      {row?.file && (
+        <div className="mb-2">
+          <img src={row?.file} width={100} alt=""/>
+        </div>
+      )}
       <Input control={control} name="file" type="file" label="File" />
 
+      {row?.multi_file && (
+        <div className="d-flex mb-2">
+          {(row?.multi_file || []).map((c: any, i: number) => (
+            <img src={c} width={100} key={i} className="me-2" alt=""/>
+          ))}
+        </div>
+      )}
       <Input
         control={control}
         name="multi_file"

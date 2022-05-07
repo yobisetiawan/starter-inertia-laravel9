@@ -18,7 +18,8 @@ class Example extends Model
     protected $casts = [
         'is_default' => 'boolean',
         'multi_select' => 'array',
-        'multi_check' => 'array'
+        'multi_check' => 'array',
+        'multi_file' => 'array'
     ];
 
     protected $guarded =['id', 'uuid'];

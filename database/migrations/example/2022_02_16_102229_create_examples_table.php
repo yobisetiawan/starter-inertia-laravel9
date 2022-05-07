@@ -40,6 +40,7 @@ class CreateExamplesTable extends Migration
 			
 			$table->string('file')->nullable();  
 			$table->string('multi_file')->nullable(); 
+			$table->string('webcam')->nullable();  
 
 			$table->tinyInteger('rating')->default(0)->nullable();
 

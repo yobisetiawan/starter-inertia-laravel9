@@ -26,13 +26,17 @@ class UploadService
 
         $this->path = $path;
 
-        $this->filename = ($filename ?? time()) . '.' . $this->file->getClientOriginalExtension();
+        //base64
+        if (is_string($file)) {
+            $this->filename = ($filename ?? time()) . '.jpg';
+        } else {
+            $this->filename = ($filename ?? time()) . '.' . $this->file->getClientOriginalExtension();
+            $this->fileInfo = $this->setFileOriginalInfo();
+        }
 
         $this->disk = $disk ?? env('DEFAULT_DISK', $this->disk);
 
         $this->option = $option ?? $this->option;
-
-        $this->fileInfo = $this->setFileOriginalInfo();
     }
 
     public function uploadResize($size = 100)
@@ -54,6 +58,15 @@ class UploadService
         Storage::disk($this->disk)->put($this->path . '/' . $this->filename, file_get_contents($this->file), $this->option);
     }
 
+    public function uploadBase64()
+    {
+        $image = explode(',', $this->file);
+        if (!empty($image[1])) {
+            Storage::disk($this->disk)->put($this->path . '/' . $this->filename, base64_decode($image[1]), $this->option);
+        }
+    }
+
+
     public function getURL()
     {
         return Storage::disk($this->disk)->url($this->path . '/' . $this->filename);
@@ -74,7 +87,7 @@ class UploadService
         ];
     }
 
-   
+
 
     public function getUploaded()
     {
@@ -82,15 +95,16 @@ class UploadService
             'url' => $this->getURL(),
             'disk' => $this->disk,
             'path' => $this->path . '/' . $this->filename,
-            'mime_type' => $this->fileInfo['original_mimetype'],
+            'mime_type' => $this->fileInfo['original_mimetype'] ?? 'jpg',
             'name' =>  $this->filename,
             'size' => $this->getSize()
         ];
     }
 
-    public function saveFileInfo($obj, $extra_data = []){
-        $file_info = $this->getUploaded(); 
-        
+    public function saveFileInfo($obj, $extra_data = [])
+    {
+        $file_info = $this->getUploaded();
+
         $obj->updateOrCreate([], array_merge($file_info, $extra_data));
     }
 }
