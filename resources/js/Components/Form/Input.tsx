@@ -133,7 +133,7 @@ const Input = ({
               finalType = "text"
             }
             return (
-              <div className="position-relative mb-3">
+              <div className="position-relative ">
                 <input
                   className={`app-form-control form-control font-bold ${
                     errors[name] && "is-invalid"
