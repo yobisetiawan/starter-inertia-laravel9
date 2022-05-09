@@ -1,6 +1,6 @@
 <?php
 
-
+use App\Helpers\MyRoute;
 use App\Http\Controllers\Api\V1\Auth\AuthController;
 use App\Http\Controllers\Api\V1\Ecommerce\Shipper\ShipperAreaController;
 use App\Http\Controllers\Api\V1\Ecommerce\Shipper\ShipperTrackingController;
@@ -23,22 +23,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-function apiResource($name, $cls, $names = null, $only = null)
-{
-    $route = Route::apiResource($name, $cls);
 
-    $route->parameters([$name => 'id']);
-
-    if ($names) {
-        $route->names('api.' . $names);
-    }
-
-    if ($only) {
-        $route->only($only);
-    }
-
-    return $route;
-}
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
@@ -66,7 +51,7 @@ Route::prefix('v1')->group(function () {
             Route::post('change-password', [ChangePasswordController::class, 'store']);
             Route::post('change-avatar', [ChangeAvatarController::class, 'store']);
 
-            apiResource('addresses', AddressController::class, 'user.addresses');
+            MyRoute::resourceAPI('addresses', AddressController::class, 'user.addresses');
         });
 
         Route::prefix('shipper')->group(function () {
