@@ -1,12 +1,13 @@
 import { Inertia } from "@inertiajs/inertia"
 import { Link, usePage } from "@inertiajs/inertia-react"
-import React from "react"
+import React, { useState } from "react"
 import { useForm } from "react-hook-form"
-import { Layout, App, Input } from "../../../Components"
+import { Layout, App, Input, Form } from "../../../Components"
 import { route } from "../../../Helper"
 
 const Page = () => {
   const { auth } = usePage().props as any
+  const [isLoading, SetIsLoading] = useState(false)
   const { control, handleSubmit } = useForm({
     defaultValues: {
       name: auth?.user?.name || "",
@@ -14,8 +15,10 @@ const Page = () => {
   })
 
   const onSubmit = (data: any) => {
+    SetIsLoading(true)
     Inertia.post(route("web.profile.store"), data, {
       preserveState: true,
+      onFinish: () => SetIsLoading(false),
     })
   }
 
@@ -34,7 +37,8 @@ const Page = () => {
         <form onSubmit={handleSubmit(onSubmit)} className="mb-4">
           <Input control={control} name="name" label="Name" />
 
-          <input type="submit" className="btn btn-primary app-btn" />
+          
+          <Form.Button title="Save" isLoading={isLoading} />
         </form>
 
         <div>

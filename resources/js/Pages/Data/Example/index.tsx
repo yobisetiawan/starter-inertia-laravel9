@@ -18,9 +18,9 @@ const Page = ({ list }: Props) => {
     { field: "number", title: "Number", show: true },
   ])
 
-  let baseRoute = "web.data.example"
+  const baseRoute = "web.data.example"
 
-  let listDt = list?.data || []
+  const listDt = list?.data || []
 
   return (
     <Layout>

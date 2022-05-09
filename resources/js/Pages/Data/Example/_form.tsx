@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react"
 import { useForm } from "react-hook-form"
-import { Input } from "../../../Components"
+import { Form, Input } from "../../../Components"
 import { EditorState } from "draft-js"
 import { Inertia } from "@inertiajs/inertia"
 import { route, textEditor } from "../../../Helper"
@@ -9,6 +9,8 @@ import moment from "moment-timezone"
 import axios from "axios"
 
 const _form = () => {
+  const [isLoading, SetIsLoading] = useState(false)
+
   const { row } = usePage().props as any
 
   const [lc2, slc2] = useState([]) as any
@@ -48,13 +50,12 @@ const _form = () => {
   }
 
   const onSubmit = (data: any) => {
+    SetIsLoading(true)
     const finalDt = { ...data }
 
     finalDt.texteditor = textEditor.DraftToHtml(
       finalDt.texteditor.getCurrentContent()
     )
-
-    console.log(finalDt)
 
     if (row) {
       finalDt._method = "put"
@@ -63,12 +64,14 @@ const _form = () => {
         finalDt,
         {
           onError: onScrollResetPage,
+          onFinish: () => SetIsLoading(false),
         }
       )
     } else {
       Inertia.post(route("web.data.example.store"), finalDt, {
         onError: onScrollResetPage,
         forceFormData: true,
+        onFinish: () => SetIsLoading(false),
       })
     }
   }
@@ -250,14 +253,14 @@ const _form = () => {
 
       {row?.webcam && (
         <div className="mb-2">
-          <img src={row?.webcam} width={100} alt=""/>
+          <img src={row?.webcam} width={100} alt="" />
         </div>
       )}
       <Input control={control} type="webcam" name="webcam" label="Webcam" />
 
       {row?.file && (
         <div className="mb-2">
-          <img src={row?.file} width={100} alt=""/>
+          <img src={row?.file} width={100} alt="" />
         </div>
       )}
       <Input control={control} name="file" type="file" label="File" />
@@ -265,7 +268,7 @@ const _form = () => {
       {row?.multi_file && (
         <div className="d-flex mb-2">
           {(row?.multi_file || []).map((c: any, i: number) => (
-            <img src={c} width={100} key={i} className="me-2" alt=""/>
+            <img src={c} width={100} key={i} className="me-2" alt="" />
           ))}
         </div>
       )}
@@ -276,7 +279,7 @@ const _form = () => {
         label="Multi Files"
       />
 
-      <input type="submit" className="btn btn-primary app-btn" />
+      <Form.Button title="Save" isLoading={isLoading} />
     </form>
   )
 }

@@ -1,10 +1,12 @@
 import { Inertia } from "@inertiajs/inertia"
-import React from "react"
+import React, { useState } from "react"
 import { useForm } from "react-hook-form"
-import { Layout, App, Input } from "../../../../Components"
+import { Layout, App, Input, Form } from "../../../../Components"
 import { route } from "../../../../Helper"
 
 const Page = () => {
+  const [isLoading, SetIsLoading] = useState(false)
+
   const { control, handleSubmit, reset } = useForm({
     defaultValues: {
       old_password: "",
@@ -14,11 +16,13 @@ const Page = () => {
   })
 
   const onSubmit = (data: any) => {
+    SetIsLoading(true)
     Inertia.post(route("web.profile.password.store"), data, {
       preserveState: true,
       onSuccess: () => {
         reset()
       },
+      onFinish: () => SetIsLoading(false),
     })
   }
 
@@ -51,7 +55,7 @@ const Page = () => {
             placeholder="Password Confirmation"
           />
 
-          <input type="submit" className="btn btn-primary app-btn" />
+          <Form.Button title="Save" isLoading={isLoading} />
         </form>
       </div>
     </Layout>
