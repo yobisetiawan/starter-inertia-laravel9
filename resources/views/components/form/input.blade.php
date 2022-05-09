@@ -8,25 +8,17 @@
             <div class="app-start-label">{{ $start_label }}</div>
         @endif
         <input type="{{ $type ?? 'text' }}"
-            class="app-form-control {{$class ?? ''}} form-control font-bold @error($field) is-invalid @enderror {{ !empty($start_label) ? 'ps-5' : '' }} {{ !empty($end_label) ? 'pe-5' : '' }}"
+            class="app-form-control {{ $class ?? '' }} form-control font-bold @error($field) is-invalid @enderror {{ !empty($start_label) ? 'ps-5' : '' }} {{ !empty($end_label) ? 'pe-5' : '' }}"
             name="{{ $field }}" value="{{ $value ?? old($field, $row->$field ?? null) }}"
-            placeholder="{{ $placeholder ?? '' }}" 
-            {{ !empty($id) ? 'id=' . $id : '' }}
-            {{ !empty($readonly) && $readonly ? 'readonly' : '' }}
-            {{ !empty($attr_max) ? 'max='.$attr_max : '' }}
-            {{ !empty($attr_min) ? 'min='.$attr_min : '' }}
-            {{ !empty($min_date) ? 'min_date='.$min_date : ''}}
-            {{ !empty($only_day) ? 'only_day='.$only_day : ''}}
-            >
+            placeholder="{{ $placeholder ?? '' }}" {{ !empty($id) ? 'id=' . $id : '' }}
+            {{ !empty($readonly) && $readonly ? 'readonly' : '' }} {{ !empty($attr_max) ? 'max=' . $attr_max : '' }}
+            {{ !empty($attr_min) ? 'min=' . $attr_min : '' }} {{ !empty($min_date) ? 'min_date=' . $min_date : '' }}
+            {{ !empty($only_day) ? 'only_day=' . $only_day : '' }}>
         @if (!empty($end_label))
             <div class="app-end-label">{{ $end_label }}</div>
         @endif
 
-        @if (!empty($type) && $type == 'password')
-            <a href="#" class="app-btn-toggle-password text-decoration-none" >
-                <i class="las la-eye"></i>
-            </a>
-        @endif
+
     </div>
 
     @if (!empty($info))
