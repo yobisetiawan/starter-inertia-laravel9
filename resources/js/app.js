@@ -6,6 +6,7 @@ import { InertiaProgress } from "@inertiajs/progress"
 InertiaProgress.init()
 
 createInertiaApp({
+  // eslint-disable-next-line no-undef
   resolve: (name) => require(`./Pages/${name}`),
   setup({ el, App, props }) {
     render(<App {...props} />, el)
