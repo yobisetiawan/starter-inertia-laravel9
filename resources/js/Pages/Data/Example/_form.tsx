@@ -49,6 +49,8 @@ const _form = () => {
     }
   }
 
+  const baseRoute = "web.data.example"
+
   const onSubmit = (data: any) => {
     SetIsLoading(true)
     const finalDt = { ...data }
@@ -59,16 +61,12 @@ const _form = () => {
 
     if (row) {
       finalDt._method = "put"
-      Inertia.post(
-        route("web.data.example.update", { id: row.uuid }),
-        finalDt,
-        {
-          onError: onScrollResetPage,
-          onFinish: () => SetIsLoading(false),
-        }
-      )
+      Inertia.post(route(baseRoute + ".update", { id: row.uuid }), finalDt, {
+        onError: onScrollResetPage,
+        onFinish: () => SetIsLoading(false),
+      })
     } else {
-      Inertia.post(route("web.data.example.store"), finalDt, {
+      Inertia.post(route(baseRoute + ".store"), finalDt, {
         onError: onScrollResetPage,
         forceFormData: true,
         onFinish: () => SetIsLoading(false),

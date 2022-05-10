@@ -31,7 +31,7 @@ const Page = ({ list }: Props) => {
 
         <div className="d-flex justify-content-between mb-4">
           <Link
-            href={route("web.data.example.create")}
+            href={route(baseRoute + ".create")}
             className="app-btn btn btn-primary "
           >
             + Create
