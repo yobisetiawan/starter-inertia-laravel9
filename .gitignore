@@ -15,3 +15,6 @@ yarn-error.log
 
 
 /resources/js/ziggy.js
+
+/public/js/app.js
+/public/css/app.css
