@@ -612,6 +612,17 @@
                     "type": "string"
                 }
             },
+            "OA_method_put": {
+                "name": "_method",
+                "in": "query",
+                "schema": {
+                    "type": "string",
+                    "enum": [
+                        "PUT"
+                    ],
+                    "default": "PUT"
+                }
+            },
             "OA_listType": {
                 "name": "type",
                 "in": "query",

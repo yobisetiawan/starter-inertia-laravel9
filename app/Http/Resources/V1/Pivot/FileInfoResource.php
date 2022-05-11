@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Resources\V1\Profile;
+namespace App\Http\Resources\V1\Pivot;
 
-use App\Http\Resources\V1\Pivot\FileInfoResource;
+
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class UserResource extends JsonResource
+class FileInfoResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -17,13 +17,10 @@ class UserResource extends JsonResource
     {
         return [
             'id' => $this->uuid,
-            'name' => $this->name,
-            'email' => $this->email,
+            'url' => $this->url,
+
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
-
-            'addresses' =>   AddressResource::collection($this->whenLoaded('addresses')),
-            'avatar' =>  new FileInfoResource($this->whenLoaded('avatar')),
         ];
     }
 }

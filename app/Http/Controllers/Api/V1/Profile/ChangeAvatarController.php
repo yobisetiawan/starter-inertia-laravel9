@@ -21,8 +21,6 @@ class ChangeAvatarController extends BaseCrud
 
     public $updateValidator = ApiChangeAvatarRequest::class;
 
-    public $uploaded;
-
     public function store(Request $request)
     {
         $user = Auth::user();
@@ -30,24 +28,17 @@ class ChangeAvatarController extends BaseCrud
         return $this->update($request, $user->uuid);
     }
 
-    public function __beforeUpdate()
+    public function __afterUpdate()
     {
-        $upload = new UploadService(
-            $this->requestData->file('avatar'),
-            FileUploadConst::USER_AVATAR_PATH,
-            Auth::user()->uuid
-        );
+        if ($file = $this->requestData->file('avatar')) {
+            $upload = new UploadService(
+                $file,
+                FileUploadConst::USER_AVATAR_PATH,
+                Auth::user()->uuid
+            );
 
-        $upload->uploadResize(300);
-
-        $this->uploaded = $upload;
-    }
-
-    public function __afterupdate()
-    {
-
-        if ($this->uploaded) {
-            $this->uploaded->saveFileInfo($this->row->avatar(), ['slug' =>  FileUploadConst::USER_AVATAR_SLUG]);
+            $upload->uploadResize(300);
+            $upload->saveFileInfo($this->row->avatar(), ['slug' =>  FileUploadConst::USER_AVATAR_SLUG]);
         }
     }
 }
