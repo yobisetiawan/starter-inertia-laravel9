@@ -39,6 +39,13 @@ namespace App\Doc;
  *
  * @OA\Parameter(
  *  in="query",
+ *  parameter="OA_method_put",
+ *  name="_method",
+ *  schema={"type": "string", "enum": {"PUT"}, "default": "PUT"}
+ *  )
+ *
+ * @OA\Parameter(
+ *  in="query",
  *  parameter="OA_listType",
  *  name="type",
  *  schema={"type": "string", "enum": {"collection", "pagination"}, "default": "collection"}
@@ -78,7 +85,7 @@ namespace App\Doc;
  *          type="integer"
  *      )
  *  )
- *     
+ *
  *  @OA\Parameter(
  *  in="query",
  *  parameter="OA_Relations",
